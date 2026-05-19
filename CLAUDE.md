@@ -7,6 +7,10 @@
   Anwendung sofort im Browser geöffnet werden kann (z. B. via raw.githack.com,
   GitHub Pages, Vercel-Preview o. ä.). Nicht nur erklären, wie man sie deployt —
   einen funktionierenden Link liefern.
+- **URL bei jedem Schritt**: Bei jeder Handlungsanweisung, die eine Web-Seite betrifft
+  (GitHub-Settings, Netlify-Dashboard, Drittanbieter-Tools etc.), IMMER den direkten
+  Deep-Link zu genau der Seite/dem Schritt mitgeben. Nicht nur beschreiben, wo der
+  Nutzer hinklicken soll — den Link zum Anklicken liefern.
 - Nutzer kommuniziert auf Deutsch.
 
 ## Kontakt
