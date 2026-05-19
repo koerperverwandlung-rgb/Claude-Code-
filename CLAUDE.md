@@ -15,3 +15,11 @@
 
 ## Kontakt
 - E-Mail für Benachrichtigungen: andreaskotte@gmx.de
+
+## Deployment
+
+- Live-Seite (Reinigungs-Checkliste): https://radiant-youtiao-402f71.netlify.app
+- Netlify-Projekt: radiant-youtiao-402f71
+- Ziel: Netlify ist mit dem GitHub-Repo verbunden (Continuous Deployment), sodass
+  jeder Git-Push auf `claude/cleaning-checklist-app-Xnsqk` automatisch deployt wird.
+  Nutzer wünscht keinen manuellen Drag & Drop mehr.
