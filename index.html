@@ -241,6 +241,8 @@
       <div class="greeting">
         Hallo <strong>Mayer</strong>! Vielen herzlichen Dank für deine wertvolle Arbeit.
         Wir wissen das wirklich sehr zu schätzen. Hier ist deine Liste für heute.
+        <br><br>
+        <em>Tipp: Am besten zuerst die Maschinen (Geschirrspüler, Waschmaschine und Trockner) ausladen, neu befüllen und anstellen.</em>
       </div>
     </header>
 
@@ -287,74 +289,99 @@
   <script>
     const rooms = [
       {
-        name: "Allgemein",
-        icon: "&#127968;",
+        name: "Allgemein (Maschinen & Wäsche)",
+        icon: "&#127981;",
         tasks: [
-          "Mülleimer leeren und neue Beutel einsetzen",
-          "Staub von Möbeln und Oberflächen wischen",
-          "Spiegel und Glasflächen reinigen",
-          "Türklinken und Lichtschalter abwischen",
-          "Frische Handtücher bereitlegen"
-        ]
-      },
-      {
-        name: "Wohnzimmer",
-        icon: "&#128106;",
-        tasks: [
-          "Boden saugen",
-          "Boden wischen",
-          "Sofa und Polster absaugen",
-          "Couchtisch abwischen",
-          "Regale und TV-Möbel abstauben",
-          "Fenstersimse reinigen"
-        ]
-      },
-      {
-        name: "Schlafzimmer",
-        icon: "&#128719;",
-        tasks: [
-          "Boden saugen",
-          "Boden wischen",
-          "Bett frisch beziehen",
-          "Nachttische abwischen",
-          "Kleiderschrank-Oberflächen abstauben"
-        ]
-      },
-      {
-        name: "Flur",
-        icon: "&#128682;",
-        tasks: [
-          "Boden saugen",
-          "Boden wischen",
-          "Garderobe ordnen und abwischen",
-          "Schuhe ordentlich abstellen",
-          "Eingangsbereich reinigen"
-        ]
-      },
-      {
-        name: "Bad",
-        icon: "&#128705;",
-        tasks: [
-          "Boden saugen",
-          "Boden wischen",
-          "Waschbecken und Armaturen reinigen",
-          "Toilette gründlich reinigen",
-          "Dusche / Badewanne reinigen",
-          "Spiegel polieren",
-          "Handtücher wechseln"
+          "Geschirrspüler, Waschmaschine und Trockner ausladen, neu befüllen und erneut anstellen",
+          "Weiße Wäsche: 30-40° / 800 Umdrehungen / 60 min-Programm",
+          "Schwarz- und Buntwäsche: 30-40° / 800 Umdrehungen / 60 min-Programm",
+          "Kochwäsche / Lappen / Bettwäsche / Handtücher: 90° (Baumwollprogramm)",
+          "Wäsche abgehängt und neue aufgehängt",
+          "Bügelwäsche abgearbeitet",
+          "Fusselsieb des Trockners gereinigt",
+          "Wasserbehälter Trockner entleert"
         ]
       },
       {
         name: "Küche",
         icon: "&#127859;",
         tasks: [
+          "Mülleimer (freistehend) entleeren und neuen Beutel einfügen",
+          "Mülleimer unter der Spüle (zwei Stück) entleeren und neue Beutel einfügen",
+          "Geschirrspüler ausräumen, neu befüllen und wieder ausräumen",
+          "Mikrowelle reinigen",
+          "Eventuell verdorbene Lebensmittel entsorgen",
+          "Nahrungsergänzungen einmal pro Woche nach Absprache auffüllen",
+          "Getränke im Kühlschrank aufgefüllt",
           "Boden saugen",
           "Boden wischen",
-          "Arbeitsflächen abwischen",
-          "Herd und Backofen außen reinigen",
-          "Spüle reinigen und polieren",
-          "Geschirr spülen / einräumen",
-          "Mülleimer leeren"
+          "Fenster gereinigt"
+        ]
+      },
+      {
+        name: "Wohnzimmer",
+        icon: "&#128106;",
+        tasks: [
+          "Papiereimer am Schreibtisch entleert",
+          "Schreibtisch (Tastatur, Drucker, Modem) gereinigt / abgestaubt",
+          "Glasplatte Vorderseite / Rückseite gereinigt",
+          "TV-Bank abgestaubt / gereinigt",
+          "Couch abgewischt",
+          "Kissenbezüge / Decke abgezogen und gewaschen",
+          "Pokale / Hochschrank abgestaubt",
+          "Whiteboard gereinigt",
+          "Laufband, Hanteln und Zugturm abgestaubt",
+          "Getränkekisten sortiert",
+          "Staubsauger entleert",
+          "Spiegel gereinigt",
+          "Fensterbank gereinigt",
+          "Fenster gereinigt",
+          "Boden / Teppich gesaugt",
+          "Boden gewischt"
+        ]
+      },
+      {
+        name: "Schlafzimmer",
+        icon: "&#128719;",
+        tasks: [
+          "Bett einmal pro Woche frisch beziehen",
+          "Kleiderschrank nach Farben nachsortiert",
+          "Schrank abgestaubt",
+          "Spiegel gereinigt",
+          "Fenster gereinigt",
+          "Boden / Teppich gesaugt",
+          "Boden gewischt"
+        ]
+      },
+      {
+        name: "Flur",
+        icon: "&#128682;",
+        tasks: [
+          "Ablage / Sideboard abgestaubt und abgewischt",
+          "Boden saugen",
+          "Boden wischen"
+        ]
+      },
+      {
+        name: "Badezimmer",
+        icon: "&#128705;",
+        tasks: [
+          "Waschbecken und Unterschrank gereinigt",
+          "Spiegel gereinigt",
+          "Spiegelschrank ausgeräumt und gereinigt",
+          "Oberseite Spiegelschrank gereinigt / abgestaubt",
+          "Badewanne + Armaturen gereinigt",
+          "Hängevorrichtung Dusche gereinigt",
+          "Toilette gereinigt",
+          "Spülkasten abgewischt",
+          "Abfalleimer WC (klein) ausgeleert und frischen Beutel eingelegt",
+          "Tischabfall Waschbecken entleert",
+          "Gästehandtücher (gebraucht) entleert",
+          "Gästehandtücher aufgefüllt",
+          "Handtücher gefaltet wie im Hotel :)",
+          "Fenster gereinigt",
+          "Boden gesaugt",
+          "Boden gewischt"
         ]
       }
     ];
