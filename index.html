@@ -94,6 +94,20 @@
     .tasks {
       padding: 8px 0;
     }
+    .room-notes {
+      padding: 12px 16px 4px;
+    }
+    .room-note {
+      background: #fff8e1;
+      border-left: 4px solid #f7c64a;
+      padding: 12px 14px;
+      border-radius: 6px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #5b4f2a;
+      margin-bottom: 8px;
+    }
+    .room-note strong { color: #3d3415; }
     .task {
       display: flex;
       align-items: center;
@@ -289,17 +303,20 @@
   <script>
     const rooms = [
       {
-        name: "Allgemein (Maschinen & Wäsche)",
+        name: "Allgemein (Maschinen, Wäsche & Pakete)",
         icon: "&#127981;",
+        notes: [
+          "<strong>Waschmaschine wichtig:</strong> Programm immer auf <strong>&bdquo;Baumwolle&ldquo;</strong> stellen und die Temperatur <strong>manuell auf 30°</strong> einstellen — die Maschine steht sonst standardmäßig auf 40° oder 60°. Nur <strong>Kochwäsche</strong> (Lappen, Handtücher, Bettwäsche) wird bei <strong>90°</strong> gewaschen. Die <strong>Waschmittel-Pads</strong> liegen unter der Spüle.",
+          "<strong>Türklingel & Pakete:</strong> Wenn es klingelt, bitte die Tür öffnen und Pakete annehmen. Vorher kurz nachfragen — in der Regel dürfen die Pakete dann auch geöffnet und die Kartonage entsorgt werden."
+        ],
         tasks: [
           "Geschirrspüler, Waschmaschine und Trockner ausladen, neu befüllen und erneut anstellen",
-          "Weiße Wäsche: 30-40° / 800 Umdrehungen / 60 min-Programm",
-          "Schwarz- und Buntwäsche: 30-40° / 800 Umdrehungen / 60 min-Programm",
-          "Kochwäsche / Lappen / Bettwäsche / Handtücher: 90° (Baumwollprogramm)",
+          "Wäsche bei 30° (Programm Baumwolle) gewaschen",
+          "Kochwäsche (Lappen, Handtücher, Bettwäsche) bei 90° gewaschen",
           "Wäsche abgehängt und neue aufgehängt",
           "Bügelwäsche abgearbeitet",
-          "Fusselsieb des Trockners gereinigt",
-          "Wasserbehälter Trockner entleert"
+          "Pakete angenommen",
+          "Paket geöffnet und Kartonage entsorgt"
         ]
       },
       {
@@ -309,10 +326,11 @@
           "Mülleimer (freistehend) entleeren und neuen Beutel einfügen",
           "Mülleimer unter der Spüle (zwei Stück) entleeren und neue Beutel einfügen",
           "Geschirrspüler ausräumen, neu befüllen und wieder ausräumen",
+          "Arbeitsplatte abgewischt",
           "Mikrowelle reinigen",
           "Eventuell verdorbene Lebensmittel entsorgen",
           "Nahrungsergänzungen einmal pro Woche nach Absprache auffüllen",
-          "Getränke im Kühlschrank aufgefüllt",
+          "Getränke im Kühlschrank aufgefüllt (mind. 1-2 Flaschen Wasser und 2-4 Energydrinks)",
           "Boden saugen",
           "Boden wischen",
           "Fenster gereinigt"
@@ -321,16 +339,19 @@
       {
         name: "Wohnzimmer",
         icon: "&#128106;",
+        notes: [
+          "<strong>Flecken auf der Couch:</strong> Bitte mit dem <strong>Fleckenspray aus der Küche</strong> behandeln."
+        ],
         tasks: [
           "Papiereimer am Schreibtisch entleert",
           "Schreibtisch (Tastatur, Drucker, Modem) gereinigt / abgestaubt",
-          "Glasplatte Vorderseite / Rückseite gereinigt",
+          "Wohnzimmertisch abgewischt",
           "TV-Bank abgestaubt / gereinigt",
           "Couch abgewischt",
+          "Couch auf Flecken geprüft und ggf. behandelt",
           "Kissenbezüge / Decke abgezogen und gewaschen",
-          "Pokale / Hochschrank abgestaubt",
-          "Whiteboard gereinigt",
-          "Laufband, Hanteln und Zugturm abgestaubt",
+          "Hochschrank abgestaubt",
+          "Zugturm abgestaubt",
           "Getränkekisten sortiert",
           "Staubsauger entleert",
           "Spiegel gereinigt",
@@ -390,8 +411,12 @@
     rooms.forEach((room, rIdx) => {
       const roomEl = document.createElement("div");
       roomEl.className = "room";
+      const notesHtml = (room.notes && room.notes.length)
+        ? `<div class="room-notes">${room.notes.map(n => `<div class="room-note">${n}</div>`).join("")}</div>`
+        : "";
       roomEl.innerHTML = `
         <div class="room-header"><span class="room-icon">${room.icon}</span>${room.name}</div>
+        ${notesHtml}
         <div class="tasks">
           ${room.tasks.map((t, tIdx) => `
             <div class="task">
