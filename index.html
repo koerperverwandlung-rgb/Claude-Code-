@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reinigungs-Checkliste für Mayer</title>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+      color: #2c3e50;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
+    header {
+      background: linear-gradient(135deg, #4a90e2 0%, #5b6ee1 100%);
+      color: #fff;
+      padding: 32px 28px 24px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .greeting {
+      font-size: 18px;
+      margin-top: 12px;
+      padding: 14px 18px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      line-height: 1.5;
+    }
+    .greeting strong { color: #fff8b3; }
+    .date-field {
+      padding: 20px 28px;
+      background: #f8f9fb;
+      border-bottom: 1px solid #e6e9ef;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .date-field label {
+      font-weight: 600;
+      font-size: 15px;
+    }
+    .date-field input {
+      flex: 1;
+      min-width: 180px;
+      padding: 10px 14px;
+      border: 2px solid #d6dae3;
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: inherit;
+    }
+    .date-field input:focus {
+      outline: none;
+      border-color: #4a90e2;
+    }
+    .rooms {
+      padding: 24px 28px 8px;
+    }
+    .room {
+      margin-bottom: 24px;
+      border: 1px solid #e6e9ef;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .room-header {
+      background: #f0f3f9;
+      padding: 14px 18px;
+      font-size: 17px;
+      font-weight: 700;
+      color: #2c3e50;
+      border-bottom: 1px solid #e6e9ef;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .room-icon {
+      font-size: 20px;
+    }
+    .tasks {
+      padding: 8px 0;
+    }
+    .task {
+      display: flex;
+      align-items: center;
+      padding: 12px 18px;
+      cursor: pointer;
+      transition: background 0.15s;
+      border-bottom: 1px solid #f1f3f7;
+    }
+    .task:last-child { border-bottom: none; }
+    .task:hover { background: #fafbfd; }
+    .task input[type="checkbox"] {
+      width: 22px;
+      height: 22px;
+      margin-right: 14px;
+      cursor: pointer;
+      accent-color: #4a90e2;
+      flex-shrink: 0;
+    }
+    .task label {
+      flex: 1;
+      cursor: pointer;
+      font-size: 15px;
+      line-height: 1.4;
+    }
+    .task input[type="checkbox"]:checked + label {
+      text-decoration: line-through;
+      color: #95a3b8;
+    }
+    .footer {
+      padding: 24px 28px 32px;
+      background: #f8f9fb;
+      border-top: 1px solid #e6e9ef;
+    }
+    .notes {
+      margin-bottom: 20px;
+    }
+    .notes label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+    .notes textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid #d6dae3;
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      resize: vertical;
+      min-height: 70px;
+    }
+    .notes textarea:focus {
+      outline: none;
+      border-color: #4a90e2;
+    }
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #28a745 0%, #20913a 100%);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.1s, box-shadow 0.2s;
+      box-shadow: 0 4px 14px rgba(40, 167, 69, 0.3);
+    }
+    .submit-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(40, 167, 69, 0.4);
+    }
+    .submit-btn:active { transform: translateY(0); }
+    .submit-btn:disabled {
+      background: #95a3b8;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    .progress {
+      text-align: center;
+      margin-bottom: 16px;
+      font-size: 14px;
+      color: #6b7a90;
+      font-weight: 600;
+    }
+    .progress-bar {
+      height: 8px;
+      background: #e6e9ef;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #4a90e2, #28a745);
+      width: 0%;
+      transition: width 0.3s;
+    }
+    .success-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 20px;
+    }
+    .success-overlay.show { display: flex; }
+    .success-box {
+      background: #fff;
+      border-radius: 16px;
+      padding: 36px 28px;
+      text-align: center;
+      max-width: 420px;
+    }
+    .success-box .check {
+      font-size: 64px;
+      margin-bottom: 16px;
+    }
+    .success-box h2 {
+      color: #28a745;
+      margin-bottom: 12px;
+      font-size: 22px;
+    }
+    .success-box p {
+      color: #6b7a90;
+      line-height: 1.5;
+    }
+    @media (max-width: 500px) {
+      body { padding: 10px; }
+      header { padding: 24px 20px 20px; }
+      header h1 { font-size: 22px; }
+      .greeting { font-size: 16px; }
+      .rooms, .footer, .date-field { padding-left: 18px; padding-right: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Reinigungs-Checkliste</h1>
+      <div class="greeting">
+        Hallo <strong>Mayer</strong>! Vielen herzlichen Dank für deine wertvolle Arbeit.
+        Wir wissen das wirklich sehr zu schätzen. Hier ist deine Liste für heute.
+      </div>
+    </header>
+
+    <div class="date-field">
+      <label for="cleaning-date">Datum:</label>
+      <input type="date" id="cleaning-date" />
+    </div>
+
+    <div class="rooms" id="rooms"></div>
+
+    <div class="footer">
+      <div class="progress">
+        <span id="progress-text">0 von 0 Aufgaben erledigt</span>
+        <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+      </div>
+      <div class="notes">
+        <label for="notes">Anmerkungen (optional):</label>
+        <textarea id="notes" placeholder="z.B. besondere Beobachtungen, fehlende Materialien..."></textarea>
+      </div>
+      <button class="submit-btn" id="submit-btn">Reinigung abgeschlossen</button>
+    </div>
+  </div>
+
+  <div class="success-overlay" id="success">
+    <div class="success-box">
+      <div class="check">&#10004;</div>
+      <h2>Vielen Dank, Mayer!</h2>
+      <p>Die Reinigung wurde erfolgreich gemeldet. Andreas wurde per E-Mail informiert.</p>
+    </div>
+  </div>
+
+  <form id="email-form" action="https://formsubmit.co/andreaskotte@gmx.de" method="POST" enctype="multipart/form-data" style="display:none;">
+    <input type="hidden" name="_subject" value="Reinigung abgeschlossen - Mayer" />
+    <input type="hidden" name="_captcha" value="false" />
+    <input type="hidden" name="_template" value="table" />
+    <input type="hidden" name="_next" value="" id="next-url" />
+    <input type="text" name="Reinigungskraft" value="Mayer" />
+    <input type="text" name="Datum" id="form-date" />
+    <textarea name="Zusammenfassung" id="form-summary"></textarea>
+    <textarea name="Anmerkungen" id="form-notes"></textarea>
+    <input type="file" name="attachment" id="form-attachment" />
+  </form>
+
+  <script>
+    const rooms = [
+      {
+        name: "Allgemein",
+        icon: "&#127968;",
+        tasks: [
+          "Mülleimer leeren und neue Beutel einsetzen",
+          "Staub von Möbeln und Oberflächen wischen",
+          "Spiegel und Glasflächen reinigen",
+          "Türklinken und Lichtschalter abwischen",
+          "Frische Handtücher bereitlegen"
+        ]
+      },
+      {
+        name: "Wohnzimmer",
+        icon: "&#128106;",
+        tasks: [
+          "Boden saugen",
+          "Boden wischen",
+          "Sofa und Polster absaugen",
+          "Couchtisch abwischen",
+          "Regale und TV-Möbel abstauben",
+          "Fenstersimse reinigen"
+        ]
+      },
+      {
+        name: "Schlafzimmer",
+        icon: "&#128719;",
+        tasks: [
+          "Boden saugen",
+          "Boden wischen",
+          "Bett frisch beziehen",
+          "Nachttische abwischen",
+          "Kleiderschrank-Oberflächen abstauben"
+        ]
+      },
+      {
+        name: "Flur",
+        icon: "&#128682;",
+        tasks: [
+          "Boden saugen",
+          "Boden wischen",
+          "Garderobe ordnen und abwischen",
+          "Schuhe ordentlich abstellen",
+          "Eingangsbereich reinigen"
+        ]
+      },
+      {
+        name: "Bad",
+        icon: "&#128705;",
+        tasks: [
+          "Boden saugen",
+          "Boden wischen",
+          "Waschbecken und Armaturen reinigen",
+          "Toilette gründlich reinigen",
+          "Dusche / Badewanne reinigen",
+          "Spiegel polieren",
+          "Handtücher wechseln"
+        ]
+      },
+      {
+        name: "Küche",
+        icon: "&#127859;",
+        tasks: [
+          "Boden saugen",
+          "Boden wischen",
+          "Arbeitsflächen abwischen",
+          "Herd und Backofen außen reinigen",
+          "Spüle reinigen und polieren",
+          "Geschirr spülen / einräumen",
+          "Mülleimer leeren"
+        ]
+      }
+    ];
+
+    const roomsContainer = document.getElementById("rooms");
+    rooms.forEach((room, rIdx) => {
+      const roomEl = document.createElement("div");
+      roomEl.className = "room";
+      roomEl.innerHTML = `
+        <div class="room-header"><span class="room-icon">${room.icon}</span>${room.name}</div>
+        <div class="tasks">
+          ${room.tasks.map((t, tIdx) => `
+            <div class="task">
+              <input type="checkbox" id="task-${rIdx}-${tIdx}" data-room="${room.name}" data-task="${t}" />
+              <label for="task-${rIdx}-${tIdx}">${t}</label>
+            </div>
+          `).join("")}
+        </div>
+      `;
+      roomsContainer.appendChild(roomEl);
+    });
+
+    const dateInput = document.getElementById("cleaning-date");
+    dateInput.valueAsDate = new Date();
+
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const progressText = document.getElementById("progress-text");
+    const progressFill = document.getElementById("progress-fill");
+
+    function updateProgress() {
+      const total = checkboxes.length;
+      const done = [...checkboxes].filter(c => c.checked).length;
+      progressText.textContent = `${done} von ${total} Aufgaben erledigt`;
+      progressFill.style.width = `${(done / total) * 100}%`;
+    }
+    checkboxes.forEach(c => c.addEventListener("change", updateProgress));
+    updateProgress();
+
+    function formatDate(dateStr) {
+      if (!dateStr) return "";
+      const d = new Date(dateStr);
+      return d.toLocaleDateString("de-DE", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+    }
+
+    function buildSummary() {
+      const date = formatDate(dateInput.value);
+      const notes = document.getElementById("notes").value.trim();
+      let lines = [`Reinigung durchgeführt von: Mayer`, `Datum: ${date}`, ""];
+      rooms.forEach((room, rIdx) => {
+        lines.push(`--- ${room.name} ---`);
+        room.tasks.forEach((t, tIdx) => {
+          const checked = document.getElementById(`task-${rIdx}-${tIdx}`).checked;
+          lines.push(`  ${checked ? "[x]" : "[ ]"} ${t}`);
+        });
+        lines.push("");
+      });
+      if (notes) {
+        lines.push("Anmerkungen:");
+        lines.push(notes);
+      }
+      return lines.join("\n");
+    }
+
+    function buildPdf() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      const date = formatDate(dateInput.value);
+      const notes = document.getElementById("notes").value.trim();
+
+      doc.setFontSize(18);
+      doc.setFont(undefined, "bold");
+      doc.text("Reinigungsprotokoll", 105, 20, { align: "center" });
+
+      doc.setFontSize(11);
+      doc.setFont(undefined, "normal");
+      doc.text(`Reinigungskraft: Mayer`, 20, 32);
+      doc.text(`Datum: ${date}`, 20, 39);
+
+      let y = 50;
+      rooms.forEach((room, rIdx) => {
+        if (y > 270) { doc.addPage(); y = 20; }
+        doc.setFontSize(13);
+        doc.setFont(undefined, "bold");
+        doc.text(room.name, 20, y);
+        y += 7;
+        doc.setFontSize(11);
+        doc.setFont(undefined, "normal");
+        room.tasks.forEach((t, tIdx) => {
+          if (y > 280) { doc.addPage(); y = 20; }
+          const checked = document.getElementById(`task-${rIdx}-${tIdx}`).checked;
+          doc.text(`${checked ? "[x]" : "[ ]"}  ${t}`, 25, y);
+          y += 6;
+        });
+        y += 4;
+      });
+
+      if (notes) {
+        if (y > 250) { doc.addPage(); y = 20; }
+        doc.setFont(undefined, "bold");
+        doc.text("Anmerkungen:", 20, y);
+        y += 7;
+        doc.setFont(undefined, "normal");
+        const wrapped = doc.splitTextToSize(notes, 170);
+        doc.text(wrapped, 20, y);
+      }
+
+      return doc;
+    }
+
+    document.getElementById("submit-btn").addEventListener("click", async function () {
+      const btn = this;
+      btn.disabled = true;
+      btn.textContent = "Wird gesendet...";
+
+      try {
+        const pdf = buildPdf();
+        const pdfBlob = pdf.output("blob");
+        const filename = `Reinigung_${dateInput.value || "heute"}.pdf`;
+
+        const dt = new DataTransfer();
+        dt.items.add(new File([pdfBlob], filename, { type: "application/pdf" }));
+        const fileInput = document.getElementById("form-attachment");
+        fileInput.files = dt.files;
+
+        document.getElementById("form-date").value = formatDate(dateInput.value);
+        document.getElementById("form-summary").value = buildSummary();
+        document.getElementById("form-notes").value = document.getElementById("notes").value.trim();
+        document.getElementById("next-url").value = window.location.href.split("?")[0] + "?sent=1";
+
+        pdf.save(filename);
+
+        document.getElementById("email-form").submit();
+      } catch (e) {
+        alert("Fehler beim Senden: " + e.message + "\nBitte versuche es erneut.");
+        btn.disabled = false;
+        btn.textContent = "Reinigung abgeschlossen";
+      }
+    });
+
+    if (new URLSearchParams(window.location.search).get("sent") === "1") {
+      document.getElementById("success").classList.add("show");
+    }
+  </script>
+</body>
+</html>
