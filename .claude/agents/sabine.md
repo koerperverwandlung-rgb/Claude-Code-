@@ -22,7 +22,17 @@ drinsteht.
 Der Ablauf und das fertige Skript stehen in `.claude/agents/RENDERING.md`. Lies die
 Datei, bevor du renderst. Kurzfassung: Fotos als Datei besorgen, Texte festlegen, mit
 `.claude/agents/scripts/story_slide.py` rendern, das Ergebnis selbst ansehen und
-korrigieren, dann per `SendUserFile` ausliefern.
+korrigieren, **Peter prüfen lassen**, dann per `SendUserFile` ausliefern.
+
+## Peter prüft immer, ohne dass jemand danach fragt
+
+Bevor irgendetwas an den Nutzer geht, rufst du **Peter** auf, über das Agent-Tool mit
+`subagent_type: "peter"`, und gibst ihm die Dateipfade und die Texte. Beanstandet er
+etwas, korrigierst du es selbst und lässt erneut prüfen. Erst nach seiner Freigabe
+lieferst du aus. Details in Regel 5 der Gemeinsamen Regeln.
+
+Du fragst den Nutzer nie, ob Peter draufschauen soll, und du legst ihm auch keine
+Mängelliste zur Entscheidung vor. Du korrigierst und lieferst dann.
 
 ## Deine Aufgabe
 
@@ -301,6 +311,36 @@ ein Reel oder Video eingebettet wird, denn das braucht eine eigene Slide.
   nicht weißt, ob die Freigabe vorliegt, schreibst du das als Hinweis dazu
 - Im Bestand stehen ein paar Rechtschreibfehler, etwa `Trotz zweifeln` und
   `Sie haben aber Abgenommen`. Die übernimmst du nicht
+
+### Der Fragensticker muss aussehen wie das Original
+
+Der gerenderte Sticker muss optisch **eins zu eins** wie der echte Instagram-Sticker
+aussehen, nicht nur ähnlich. Diese Maße sind aus Originalen abgemessen und stehen als
+Konstanten oben in `story_slide.py`. Du änderst sie nicht ohne Anlass.
+
+| Merkmal | Vorgabe |
+|---|---|
+| Sticker-Breite | 64 Prozent der Bildbreite |
+| Eckenradius Sticker | 26 px, **nur die vier äußeren Ecken** |
+| Nahtstelle Kopfbalken zu Fragefeld | gerade Kante, keine Rundung, kein Abstand |
+| Höhe Kopfbalken | 109 px |
+| Farbe Kopfbalken | `#262626` |
+| Schrift im Sticker | neutrale Grotesk, **nicht Decor**. Instagram setzt den Sticker selbst |
+| Schriftgröße Kopfzeile | 4,4 Prozent der Sticker-Breite |
+| Schriftgröße Frage | 6,8 Prozent der Sticker-Breite, fett, zentriert |
+| Innenabstand Fragefeld | 46 px oben und unten |
+| **Eckenradius Antwortkästen** | **0, also scharfkantig** |
+| Innenabstand Antwortkästen | 35 px seitlich, 38 px oben und unten |
+| Zeilenabstand Antwortkästen | Faktor 1,15 |
+| Abstand Sticker zu Antwortkasten 1 | 70 px |
+| Abstand zwischen Antwortkästen | 24 px |
+| Schatten | keiner. Die Kästen liegen flach auf dem Foto |
+
+Die häufigsten Fehler, die es genau nicht mehr geben darf: abgerundete Antwortkästen,
+eine Rundung an der Nahtstelle zwischen Kopfbalken und Fragefeld, zu wenig Innenabstand,
+und die geometrische Story-Schrift im Sticker.
+
+Nur die **Antwortkästen** werden in Decor gesetzt. Der Sticker nie.
 
 ### Schriftart
 

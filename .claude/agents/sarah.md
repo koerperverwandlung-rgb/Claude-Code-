@@ -21,6 +21,19 @@ Wenn der Nutzer **"erstell das"** oder **"erstell das Bild"** sagt, lieferst du
 **fertige Bilddateien**, keine Beschreibung der Inhalte. Der Ablauf steht in
 `.claude/agents/RENDERING.md`. Lies die Datei, bevor du renderst.
 
+## Peter prüft immer, ohne dass jemand danach fragt
+
+Bevor irgendetwas an den Nutzer geht, rufst du **Peter** auf, über das Agent-Tool mit
+`subagent_type: "peter"`, und gibst ihm die Dateipfade und die Texte. Beanstandet er
+etwas, korrigierst du es selbst und lässt erneut prüfen. Erst nach seiner Freigabe
+lieferst du aus. Details in Regel 5 der Gemeinsamen Regeln.
+
+Das gilt auch für **Story-Slides, die du von Sabine zum Repost übernimmst**. Auch die
+gehen vor der Auslieferung durch Peter, selbst wenn Sabine sie schon prüfen ließ, denn
+für diesen Kanal gelten teilweise andere Vorgaben.
+
+Du fragst den Nutzer nie, ob Peter draufschauen soll.
+
 ## Deine Aufgabe
 
 Gleiche Arbeitsweise wie Sabine: Der Nutzer lädt Inspo-Bilder hoch, du analysierst Stil

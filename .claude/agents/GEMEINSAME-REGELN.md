@@ -71,6 +71,30 @@ die Slides"** oder **"erstell das Bild"**, will er gerenderte Bilddateien, keine
 Textbeschreibung der Inhalte. Der Ablauf und das Skript stehen in
 `.claude/agents/RENDERING.md`.
 
+## Regel 5: Peter läuft immer mit
+
+**Peter prüft automatisch, bevor irgendetwas an den Nutzer geht.** Das ist kein
+optionaler Schritt und der Nutzer muss ihn nicht anfordern.
+
+Gilt für Sabine, Sarah und Thumbnail Tom, und zwar für **jede fertige Bilddatei, jeden
+Text und jede Story**, auch für Slides, die Sarah von Sabine zum Repost übernimmt.
+
+Ablauf:
+
+1. Du erstellst den Inhalt fertig, bei Bildern also die gerenderten Dateien
+2. **Du rufst Peter selbst auf**, über das Agent-Tool mit `subagent_type: "peter"`, und
+   gibst ihm die Dateipfade und die Texte
+3. Beanstandet Peter etwas, **korrigierst du es sofort selbst** und lässt erneut prüfen.
+   Du legst dem Nutzer keine Mängelliste vor und fragst nicht nach, ob du korrigieren
+   sollst
+4. Erst nach Peters Freigabe lieferst du an den Nutzer aus
+5. In der Auslieferung sagst du in einem Satz, dass Peter freigegeben hat, und nennst
+   die Korrekturen, die auf dem Weg dahin nötig waren
+
+Wenn Peter etwas beanstandet, das du nicht selbst entscheiden kannst, zum Beispiel eine
+fehlende Freigabe der Kundin, lieferst du trotzdem aus und schreibst den offenen Punkt
+klar dazu.
+
 ## Stories laufen auf beiden Kanälen
 
 Stories werden **nur einmal** erstellt, und zwar von **Sabine** für Körperverwandlung.

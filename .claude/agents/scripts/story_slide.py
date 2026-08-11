@@ -60,6 +60,26 @@ BOLD_CANDIDATES = [
     ("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", "DejaVu Sans Bold"),
 ]
 
+# Der Fragensticker wird von Instagram selbst gesetzt, nicht in Decor. Instagram
+# nutzt eine neutrale Grotesk, deshalb hier bewusst eine andere Schrift als für die
+# Antwortkästen. Nimbus Sans kommt SF Pro am nächsten.
+STICKER_CANDIDATES = [
+    ("/usr/share/fonts/opentype/urw-base35/NimbusSans-Bold.otf", "Nimbus Sans Bold"),
+    ("/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf", "Liberation Sans Bold"),
+    ("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", "DejaVu Sans Bold"),
+]
+
+# Maße aus dem Instagram-Original abgemessen, als Anteil der Bildbreite 1080
+STICKER_WIDTH = 0.64      # Breite des Fragenstickers
+STICKER_RADIUS = 26       # Eckenradius der äußeren Ecken des Stickers
+STICKER_HEADER_H = 109    # Höhe des dunklen Kopfbalkens
+BOX_RADIUS = 0            # Antwortkästen sind im Original scharfkantig
+BOX_PAD_X = 35
+BOX_PAD_Y = 38
+BOX_LINE_H = 1.15         # Zeilenabstand der Antwortkästen
+GAP_STICKER = 70          # Abstand Sticker zu erstem Antwortkasten
+GAP_BOX = 24              # Abstand zwischen zwei Antwortkästen
+
 EMOJI_FONT = "/usr/share/fonts/truetype/noto/NotoColorEmoji.ttf"
 EMOJI_NATIVE = 109  # NotoColorEmoji liefert Bitmaps in dieser Groesse
 
@@ -85,10 +105,16 @@ def _pick(candidates, label):
 
 _REG_PATH, REG_NAME = _pick(FONT_CANDIDATES, "Fliesstext")
 _BOLD_PATH, BOLD_NAME = _pick(BOLD_CANDIDATES, "Fettschrift")
+_STICKER_PATH = next(p for p, _ in STICKER_CANDIDATES if os.path.exists(p))
 
 
 def font(size, bold=False):
     return ImageFont.truetype(_BOLD_PATH if bold else _REG_PATH, size)
+
+
+def sticker_font(size):
+    """Schrift des Fragenstickers. Instagram setzt ihn selbst, nicht in Decor."""
+    return ImageFont.truetype(_STICKER_PATH, size)
 
 
 def _emoji_img(char, size):
@@ -171,14 +197,53 @@ def _cover(photo_path):
     return img.crop((left, top, left + W, top + H))
 
 
-def _text_block(base, draw, text, f, box_w, pad_x, pad_y, radius, align):
-    """Weisser Kasten mit schwarzem, zentriertem Text. Gibt die Hoehe zurueck."""
+def _text_block(base, draw, text, f, box_w, pad_x, pad_y):
+    """Masse eines Antwortkastens. Gibt Zeilen, Breite, Hoehe und Zeilenabstand."""
     lines = _wrap(draw, text, f, box_w - 2 * pad_x)
-    lh = int(f.size * 1.30)
+    lh = int(f.size * BOX_LINE_H)
     inner_w = max(_measure(draw, l, f)[0] for l in lines)
     w = int(inner_w + 2 * pad_x)
-    h = int(len(lines) * lh + 2 * pad_y - (lh - f.size) * 0.4)
+    h = int((len(lines) - 1) * lh + f.size * 1.02 + 2 * pad_y)
     return lines, w, h, lh
+
+
+def _draw_sticker(base, draw, x, y, width, title, frage):
+    """
+    Fragensticker wie in der Instagram App: dunkler Kopfbalken oben, weisses
+    Fragefeld darunter, beides eine Einheit. Nur die aeusseren Ecken sind
+    gerundet, die Nahtstelle in der Mitte ist gerade.
+    """
+    f_title = sticker_font(int(width * 0.044))
+    f_q = sticker_font(int(width * 0.068))
+
+    pad_x = int(width * 0.06)
+    q_lines = _wrap(draw, frage, f_q, width - 2 * pad_x)
+    q_lh = int(f_q.size * 1.30)
+    q_h = int((len(q_lines) - 1) * q_lh + f_q.size * 1.02 + 2 * 46)
+    header_h = STICKER_HEADER_H
+    total_h = header_h + q_h
+    r = STICKER_RADIUS
+
+    # Gesamtflaeche weiss, danach der dunkle Kopf darueber. Der Kopf bekommt
+    # oben die Rundung und unten eine gerade Kante, damit die Naht sauber ist.
+    draw.rounded_rectangle([x, y, x + width, y + total_h], radius=r, fill=(255, 255, 255))
+    draw.rounded_rectangle([x, y, x + width, y + header_h], radius=r, fill=(38, 38, 38))
+    draw.rectangle([x, y + header_h - r, x + width, y + header_h], fill=(38, 38, 38))
+
+    tw = _measure(draw, title, f_title)[0]
+    _draw_line(
+        base, draw,
+        (x + (width - tw) / 2, y + (header_h - f_title.size * 1.15) / 2),
+        title, f_title, (255, 255, 255),
+    )
+
+    ly = y + header_h + 46
+    for line in q_lines:
+        lw = _measure(draw, line, f_q)[0]
+        _draw_line(base, draw, (x + (width - lw) / 2, ly), line, f_q, (0, 0, 0))
+        ly += q_lh
+
+    return total_h
 
 
 def render_slide(
@@ -189,10 +254,11 @@ def render_slide(
     sticker_title="Stell mir eine Frage",
     top=0.10,
     align="center",
-    box_size=58,
+    box_size=52,
     first_box_size=None,
-    gap=26,
+    gap=GAP_BOX,
     max_width=0.86,
+    sticker_width=STICKER_WIDTH,
 ):
     """
     photo            Pfad zum Hintergrundfoto
@@ -202,6 +268,7 @@ def render_slide(
     top              Startpunkt des Blocks als Anteil der Bildhoehe
     box_size         Schriftgroesse der Antwortkaesten
     first_box_size   Abweichende Groesse fuer Kasten 1, sonst wie box_size
+    sticker_width    Breite des Fragenstickers als Anteil der Bildbreite
     """
     base = _cover(photo)
     draw = ImageDraw.Draw(base)
@@ -211,41 +278,22 @@ def render_slide(
     y = int(H * top)
 
     if sticker:
-        f_title = font(34, bold=True)
-        f_q = font(44, bold=True)
-        pad_x, pad_y, radius = 40, 30, 30
-
-        q_lines = _wrap(draw, sticker, f_q, avail - 2 * pad_x)
-        q_lh = int(f_q.size * 1.32)
-        title_h = int(f_title.size * 1.05) + 2 * 26
-        q_h = int(len(q_lines) * q_lh + 2 * pad_y)
-
-        # dunkler Kopfbalken
-        draw.rounded_rectangle(
-            [margin, y, margin + avail, y + title_h + radius],
-            radius=radius, fill=(38, 38, 38, 255),
-        )
-        tw = _measure(draw, sticker_title, f_title)[0]
-        _draw_line(base, draw, ((W - tw) / 2, y + 26), sticker_title, f_title, (255, 255, 255))
-
-        # weißes Frageflaeche
-        qy = y + title_h
-        draw.rounded_rectangle(
-            [margin, qy, margin + avail, qy + q_h], radius=radius, fill=(255, 255, 255)
-        )
-        ly = qy + pad_y
-        for line in q_lines:
-            lw = _measure(draw, line, f_q)[0]
-            _draw_line(base, draw, ((W - lw) / 2, ly), line, f_q, (0, 0, 0))
-            ly += q_lh
-        y = qy + q_h + int(gap * 1.6)
+        sw = int(W * sticker_width)
+        if align == "left":
+            sx = margin
+        elif align == "right":
+            sx = margin + avail - sw
+        else:
+            sx = (W - sw) // 2
+        sx = max(margin, min(sx, W - margin - sw))
+        y += _draw_sticker(base, draw, sx, y, sw, sticker_title, sticker) + GAP_STICKER
 
     for i, text in enumerate(boxes):
         size = first_box_size if (i == 0 and first_box_size) else box_size
         f = font(size)
-        pad_x, pad_y, radius = 34, 26, 12
+        pad_x, pad_y, radius = BOX_PAD_X, BOX_PAD_Y, BOX_RADIUS
 
-        lines, bw, bh, lh = _text_block(base, draw, text, f, avail, pad_x, pad_y, radius, align)
+        lines, bw, bh, lh = _text_block(base, draw, text, f, avail, pad_x, pad_y)
 
         if align == "left":
             bx = margin

@@ -53,6 +53,12 @@ Zwei weitere Festlegungen aus den Gemeinsamen Regeln:
    `.claude/agents/scripts/story_slide.py`.
 4. **Stories nur einmal.** Sabine baut die Story für Körperverwandlung, dieselben Slides
    werden 1:1 bei @andreas.kotte repostet. Sarah macht keine eigenen Stories.
+5. **Peter läuft immer mit.** Sabine, Sarah und Tom rufen Peter selbst auf, bevor
+   irgendetwas an den Nutzer geht, korrigieren seine Befunde selbst und liefern erst
+   nach seiner Freigabe. Der Nutzer muss das nicht anfordern.
+6. **Fragensticker eins zu eins.** Die Maße für den Instagram-Fragensticker stehen als
+   Tabelle in `sabine.md` und als Konstanten in `scripts/story_slide.py`. Antwortkästen
+   sind scharfkantig, die Sticker-Schrift ist eine neutrale Grotesk, nicht Decor.
 
 ## Kontakt
 - E-Mail für Benachrichtigungen: andreaskotte@gmx.de
