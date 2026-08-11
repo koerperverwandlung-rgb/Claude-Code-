@@ -24,25 +24,19 @@ from story_slide import render_slide  # noqa: E402
 # top       Startpunkt des Textblocks als Anteil der Bildhöhe
 # size      Schriftgröße der Antwortkästen
 SLIDES = [
-    {
-        "foto": 1,
-        "sticker": "ich bin 54... ist es dafür nicht zu spät?",
-        "boxes": [
-            "Nie zu spät",
-            "Dein Körper reagiert in jedem Alter auf gute Gewohnheiten. 💫",
-        ],
-        # Gesicht sitzt hier mittig, frei ist nur der schmale Streifen oben
-        "top": 0.012, "size": 44, "align": "center", "max_width": 0.86,
-    },
+    # Peter-Befund: Foto 1 (ohne Geste) traegt dieses Format nicht. Das Gesicht sitzt
+    # mittig und die Kappe beginnt bei y 620. Zwischen Instagrams Kopfleiste und der
+    # Kappe bleiben rund 470 px, der Sticker allein braucht schon 290. Deshalb drei
+    # Slides mit den Gesten-Fotos, dort ist das Gesicht links und rechts bleibt Platz.
     {
         "foto": 3,
         "sticker": "in den wechseljahren klappt das doch eh nicht, oder...",
         "boxes": [
             "Doch, aber anders",
-            "Dein Körper braucht jetzt andere Reize als mit 30.",
+            "Dein Stoffwechsel braucht jetzt andere Reize als mit 30.",
         ],
-        # Gesicht links, Hand am Kinn, frei ist die rechte obere Haelfte
-        "top": 0.020, "size": 42, "align": "right", "max_width": 0.60,
+        "top": 0.086, "size": 38, "align": "right", "max_width": 0.46,
+        "sticker_width": 0.60, "crop_x": 0,
     },
     {
         "foto": 2,
@@ -51,8 +45,10 @@ SLIDES = [
             "Nicht du hast versagt",
             "Die Diäten waren der falsche Weg, nicht dein Körper.",
         ],
-        # Gesicht links unten, Zeigefinger rechts mittig, frei ist rechts oben
-        "top": 0.020, "size": 42, "align": "right", "max_width": 0.60,
+        # Ausschnitt maximal nach links, sonst schneidet der mittige Beschnitt
+        # das Gesicht an
+        "top": 0.086, "size": 38, "align": "right", "max_width": 0.46,
+        "sticker_width": 0.60, "crop_x": -180,
     },
     {
         "foto": 4,
@@ -61,8 +57,8 @@ SLIDES = [
             "Fang ruhig jetzt an",
             "Wir passen dein Essen an den Urlaub an. 😀",
         ],
-        # Gesicht links, Daumen hoch rechts, frei ist rechts oben
-        "top": 0.020, "size": 42, "align": "right", "max_width": 0.60,
+        "top": 0.086, "size": 38, "align": "right", "max_width": 0.46,
+        "sticker_width": 0.60, "crop_x": 0,
     },
 ]
 
@@ -96,6 +92,8 @@ def main():
             box_size=s["size"],
             align=s.get("align", "center"),
             max_width=s.get("max_width", 0.86),
+            sticker_width=s.get("sticker_width", 0.64),
+            crop_x=s.get("crop_x", 0),
         )
         erzeugt.append(out)
         print(out)

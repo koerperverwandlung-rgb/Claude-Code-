@@ -187,13 +187,20 @@ def _wrap(draw, text, f, max_w):
     return lines
 
 
-def _cover(photo_path):
-    """Foto auf 1080 x 1920 bringen, mittig beschnitten, ohne Verzerrung."""
+def _cover(photo_path, crop_x=0, crop_y=0):
+    """
+    Foto auf 1080 x 1920 bringen, ohne Verzerrung.
+
+    crop_x verschiebt den Ausschnitt waagerecht, crop_y senkrecht, jeweils in
+    Pixeln. Negativ heißt, es wird mehr vom linken beziehungsweise oberen Rand
+    behalten. Nötig, wenn das Gesicht am Bildrand sitzt und der mittige
+    Beschnitt es anschneiden würde.
+    """
     img = ImageOps.exif_transpose(Image.open(photo_path)).convert("RGB")
     scale = max(W / img.width, H / img.height)
     img = img.resize((int(img.width * scale) + 1, int(img.height * scale) + 1), Image.LANCZOS)
-    left = (img.width - W) // 2
-    top = (img.height - H) // 2
+    left = max(0, min(img.width - W, (img.width - W) // 2 + int(crop_x)))
+    top = max(0, min(img.height - H, (img.height - H) // 2 + int(crop_y)))
     return img.crop((left, top, left + W, top + H))
 
 
@@ -259,6 +266,8 @@ def render_slide(
     gap=GAP_BOX,
     max_width=0.86,
     sticker_width=STICKER_WIDTH,
+    crop_x=0,
+    crop_y=0,
 ):
     """
     photo            Pfad zum Hintergrundfoto
@@ -269,8 +278,9 @@ def render_slide(
     box_size         Schriftgroesse der Antwortkaesten
     first_box_size   Abweichende Groesse fuer Kasten 1, sonst wie box_size
     sticker_width    Breite des Fragenstickers als Anteil der Bildbreite
+    crop_x, crop_y   Verschiebung des Bildausschnitts in Pixeln
     """
-    base = _cover(photo)
+    base = _cover(photo, crop_x, crop_y)
     draw = ImageDraw.Draw(base)
 
     avail = int(W * max_width)
@@ -280,9 +290,9 @@ def render_slide(
     if sticker:
         sw = int(W * sticker_width)
         if align == "left":
-            sx = margin
+            sx = 40
         elif align == "right":
-            sx = margin + avail - sw
+            sx = W - 40 - sw
         else:
             sx = (W - sw) // 2
         # Der Sticker hat seine eigene Breite und darf breiter sein als die
@@ -298,10 +308,12 @@ def render_slide(
 
         lines, bw, bh, lh = _text_block(base, draw, text, f, avail, pad_x, pad_y)
 
+        # Wie beim Sticker am Bildrand ausrichten, nicht an der Textspalte.
+        # max_width steuert nur den Umbruch, nicht die Position.
         if align == "left":
-            bx = margin
+            bx = 40
         elif align == "right":
-            bx = W - margin - bw
+            bx = W - 40 - bw
         else:
             bx = (W - bw) // 2
 
