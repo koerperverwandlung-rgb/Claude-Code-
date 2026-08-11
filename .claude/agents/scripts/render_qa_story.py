@@ -1,0 +1,106 @@
+#!/usr/bin/env python3
+"""
+Frage-Antwort-Story rendern, fertige Slides aus einem Ordner mit Fotos.
+
+Benutzung:
+    python3 render_qa_story.py <foto-ordner> [ziel-ordner]
+
+Erwartet im Foto-Ordner die Dateien foto_1.jpg bis foto_4.jpg. JPG, JPEG, PNG und
+HEIC-Ableger werden erkannt, die Endung ist egal, solange die Nummer stimmt.
+
+Die Texte stehen unten in SLIDES und stammen von Sabine. Zum Ändern einfach dort
+anpassen und neu laufen lassen.
+"""
+
+import glob
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from story_slide import render_slide  # noqa: E402
+
+# Sabines Texte. Reihenfolge ist die Reihenfolge in der Story.
+# foto      welche Fotonummer als Hintergrund
+# top       Startpunkt des Textblocks als Anteil der Bildhöhe
+# size      Schriftgröße der Antwortkästen
+SLIDES = [
+    {
+        "foto": 1,
+        "sticker": "ich bin 54... ist es dafür nicht zu spät?",
+        "boxes": [
+            "Nie zu spät",
+            "Dein Körper reagiert in jedem Alter auf gute Gewohnheiten. 💫",
+        ],
+        # Gesicht sitzt hier mittig, frei ist nur der schmale Streifen oben
+        "top": 0.015, "size": 40, "align": "center", "max_width": 0.88,
+    },
+    {
+        "foto": 3,
+        "sticker": "in den wechseljahren klappt das doch eh nicht, oder...",
+        "boxes": [
+            "Doch, aber anders",
+            "Dein Körper braucht jetzt andere Reize als mit 30.",
+        ],
+        # Gesicht links, Hand am Kinn, frei ist die rechte obere Haelfte
+        "top": 0.030, "size": 40, "align": "right", "max_width": 0.56,
+    },
+    {
+        "foto": 2,
+        "sticker": "ich hab schon so viel probiert... warum soll das klappen?",
+        "boxes": [
+            "Nicht du hast versagt",
+            "Die Diäten waren der falsche Weg, nicht dein Körper.",
+        ],
+        # Gesicht links unten, Zeigefinger rechts mittig, frei ist rechts oben
+        "top": 0.030, "size": 40, "align": "right", "max_width": 0.56,
+    },
+    {
+        "foto": 4,
+        "sticker": "wir fahren nächste woche weg... lieber danach anfangen?",
+        "boxes": [
+            "Fang ruhig jetzt an",
+            "Wir passen dein Essen an den Urlaub an. 😀",
+        ],
+        # Gesicht links, Daumen hoch rechts, frei ist rechts oben
+        "top": 0.030, "size": 40, "align": "right", "max_width": 0.56,
+    },
+]
+
+
+def finde_foto(ordner, nummer):
+    treffer = sorted(glob.glob(os.path.join(ordner, f"foto_{nummer}.*")))
+    if not treffer:
+        raise SystemExit(
+            f"Kein Foto foto_{nummer}.* in {ordner} gefunden. "
+            f"Vorhanden: {sorted(os.listdir(ordner))}"
+        )
+    return treffer[0]
+
+
+def main():
+    if len(sys.argv) < 2:
+        raise SystemExit(__doc__)
+    quelle = sys.argv[1]
+    ziel = sys.argv[2] if len(sys.argv) > 2 else os.path.join(quelle, "slides")
+    os.makedirs(ziel, exist_ok=True)
+
+    erzeugt = []
+    for i, s in enumerate(SLIDES, start=1):
+        out = os.path.join(ziel, f"slide_{i:02d}.png")
+        render_slide(
+            photo=finde_foto(quelle, s["foto"]),
+            out=out,
+            sticker=s["sticker"],
+            boxes=s["boxes"],
+            top=s["top"],
+            box_size=s["size"],
+            align=s.get("align", "center"),
+            max_width=s.get("max_width", 0.86),
+        )
+        erzeugt.append(out)
+        print(out)
+    print(f"\n{len(erzeugt)} Slides erzeugt in {ziel}")
+
+
+if __name__ == "__main__":
+    main()
