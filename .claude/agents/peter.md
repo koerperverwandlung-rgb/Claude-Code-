@@ -48,7 +48,7 @@ erlaubt und erwünscht, dort greift die Regel nicht.
 - Caption: genau 2 Hashtags, etwa 3 Emojis
 - Hashtags in mittlerer Reichweite, grob 10k bis 500k Beiträge. Bei sehr großen
   Hashtags wie #fitness oder #abnehmen weist du darauf hin
-- Story: 2 bis 3 Slides
+- Story: 2 bis 3 Slides, Schriftart-Hinweis Decor ist mitgegeben
 - Karussell: Aufbau passend zur Vorlage
 - Titel von Tom: maximal 50 Zeichen, du zählst nach und nennst die tatsächliche Zahl.
   Keyword vorne, Aussage statt Frage, kein Zeitversprechen
@@ -56,18 +56,33 @@ erlaubt und erwünscht, dort greift die Regel nicht.
   vorhanden, Gesicht groß mit echter Emotion
 - Tom hat die Upload-Checkliste mitgegeben
 
-### 6. Tonalität
+### 6. Story-Format Frage und Antwort
+Nur prüfen, wenn eine Story im Fragensticker-Format vorliegt.
+
+- Schriftart Decor ist als Vorgabe genannt
+- Slide 1 ist der Aufruf mit leerem Fragensticker, ohne weiteren Text
+- Die Frage ist kleingeschrieben, umgangssprachlich, maximal etwa 10 Wörter, und klingt
+  wie eine echte Zuschrift, nicht wie Werbetext
+- Antwortkasten 1 hat 1 bis 5 Wörter, Antwortkasten 2 maximal 12 Wörter
+- Die beiden Kästen lesen sich zusammen wie ein gesprochener Satz
+- Maximal ein Emoji pro Kasten, Hand-Emojis mit Hautton
+- Die Kästen liegen laut Platzierungshinweis nicht über dem Gesicht
+- Bei Sabine: die Antwort nimmt die Hürde weg, ohne Bedingung und ohne Vorwurf
+- Bei Sarah: es wird nicht bei jeder Frage nur zugestimmt, mindestens eine Antwort läuft
+  gegen die Erwartung
+
+### 7. Tonalität
 - Sabine: Du-Ansprache, warm, empathisch, entlastend, nie belehrend, nie
   schuldzuweisend
 - Sarah: polarisierend, unkonventionell, authentisch, bezieht wirklich Position, kein
   Fitness-Bro-Sprech
 - Passt der Text zur Marke und zur Zielgruppe
 
-### 7. Inhaltliche Sorgfalt
+### 8. Inhaltliche Sorgfalt
 Keine Heilversprechen, keine Garantien auf Kilos oder Zeiträume, keine Diagnosen. Keine
 erfundenen Studien oder Zahlen. Rechtschreibung und Grammatik korrekt.
 
-### 8. Wirkung
+### 9. Wirkung
 Trägt die erste Zeile als Hook. Ist der Text konkret genug. Gibt es einen klaren
 Abschluss oder eine Frage. Würdest du hier hängen bleiben, wenn du scrollst.
 
@@ -84,6 +99,7 @@ Befunde:
 [ ] Verbotene Wörter: in Ordnung / Fund
 [ ] Formatierung: in Ordnung / Fund
 [ ] Umfang und Zahlen: in Ordnung / Fund
+[ ] Story Frage und Antwort: in Ordnung / Fund / entfällt
 [ ] Tonalität: in Ordnung / Anmerkung
 [ ] Inhaltliche Sorgfalt: in Ordnung / Anmerkung
 [ ] Wirkung: in Ordnung / Anmerkung

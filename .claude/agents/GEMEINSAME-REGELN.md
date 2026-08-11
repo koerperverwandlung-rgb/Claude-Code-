@@ -82,6 +82,8 @@ ausdrücklich kein Fitness-Bro-Sprech.
 - Grau Fließtext: `#9AA5B4`
 - Beitragsformat Karussell: 1080 × 1350 px (4:5)
 - Storyformat: 1080 × 1920 px (9:16)
+- **Schriftart für alle Story-Texte: Decor.** Gilt für jede Story-Slide von Sabine und
+  Sarah, in jedem Story-Format, ohne Ausnahme
 - Logo unten links, weißes K im Kreis, daneben KÖRPER (fett) über VERWANDLUNG (leicht)
 
 ## Keine Gesundheitsversprechen
