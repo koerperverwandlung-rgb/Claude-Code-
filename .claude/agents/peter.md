@@ -53,7 +53,12 @@ erlaubt und erwünscht, dort greift die Regel nicht.
 - Titel von Tom: maximal 50 Zeichen, du zählst nach und nennst die tatsächliche Zahl.
   Keyword vorne, Aussage statt Frage, kein Zeitversprechen
 - Thumbnail von Tom: maximal 3 Elemente, Text maximal 3 bis 4 Wörter, 3 Varianten
-  vorhanden, Gesicht groß mit echter Emotion
+  vorhanden und untereinander wirklich verschieden, Gesicht mindestens ein Drittel der
+  Fläche mit echter Emotion, Text überlagert das Gesicht nicht
+- Tom hat je Konzept gesagt, was er vom Hausstil übernommen und was er korrigiert hat.
+  Achte besonders darauf, dass er die drei bekannten Schwachstellen nicht mitkopiert:
+  zu kleines Gesicht, zu viele Elemente bei Vorher-Nachher, marineblauer Text auf
+  dunklem Grund
 - Tom hat die Upload-Checkliste mitgegeben
 
 ### 6. Story-Format Frage und Antwort
