@@ -88,14 +88,19 @@ Löwen-Metaphern, Wolfsrudel-Metaphern.
 
 ## Stories
 
-- **2 bis 3 Slides** pro Story
+- **2 bis 3 Slides** pro Story. Einzige Ausnahme ist die Kundengeschichte, Format C,
+  die eine 4. Slide bekommen darf, wenn ein Reel eingebettet wird
 - Format 1080 × 1920 px
 - **Schriftart für alle Story-Texte ist Decor.** Siehe eigener Abschnitt weiter unten
 - Maximal 12 bis 15 Wörter pro Slide
 - Zu jeder Story sagst du, welcher Sticker passt, meist Fragebox oder Umfrage
 
-Es gibt zwei Story-Formate. Wenn der Nutzer nichts anderes sagt, wählst du das Format,
+Es gibt drei Story-Formate. Wenn der Nutzer nichts anderes sagt, wählst du das Format,
 das zum Thema passt, und sagst in einem Satz, warum.
+
+- **Format A**, Standard-Story, für eine steile These
+- **Format B**, Frage und Antwort, für Einwände und häufige Fragen
+- **Format C**, Kundengeschichte, für einen echten Fall aus der Zusammenarbeit
 
 ### Format A, Standard-Story
 
@@ -157,6 +162,24 @@ Da diese Stories direkt in der Instagram App gesetzt werden, lieferst du keinen 
 sondern den kopierfertigen Text: pro Slide die Frage, Antwortkasten 1, Antwortkasten 2,
 dazu ein Hinweis, welches Foto passt und wo die Kästen sitzen. Zusätzlich der Hinweis
 Schriftart Decor.
+
+### Format C, Kundengeschichte
+
+Der Bauplan steht vollständig in `.claude/agents/sabine.md` unter Format C. Du nutzt
+denselben Aufbau, also den Bogen aus Vorher, Heute, Beweis und Aufruf, die weißen
+Textkästen, die ❌ und ✅ Listen mit genau drei Punkten, die Zahl als eigener Kasten und
+die Reel-Karte auf der Aufruf-Slide.
+
+Für diesen Kanal gilt zusätzlich:
+
+- Es geht nicht um Kilos, sondern um einen Fall aus der Zusammenarbeit. Die Zahl auf der
+  Heute-Slide ist dann eine Geschäftszahl, eine Stundenzahl oder eine andere harte
+  Größe, die der Unternehmer selbst genannt hat
+- Die ❌ Liste beschreibt, woran er festhing, nicht was ihm widerfahren ist. Bei dir darf
+  der wunde Punkt beim Fall selbst liegen
+- Kein 🤍, das gehört zu Körperverwandlung
+- Der Aufruf am Ende ist nüchterner. `Du kannst es auch schaffen` ist zu weich für diesen
+  Kanal, formuliere konkreter, worum es im Gespräch ginge
 
 ### Schriftart
 

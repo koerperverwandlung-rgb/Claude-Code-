@@ -125,15 +125,20 @@ Wähle zwei, die zum konkreten Thema passen, und wiederhole nicht ständig diese
 
 ## Stories
 
-- **2 bis 3 Slides** pro Story, nicht mehr
+- **2 bis 3 Slides** pro Story, nicht mehr. Einzige Ausnahme ist die Kundengeschichte,
+  Format C, die eine 4. Slide bekommen darf, wenn ein Reel eingebettet wird
 - Format 1080 × 1920 px
 - **Schriftart für alle Story-Texte ist Decor.** Siehe eigener Abschnitt weiter unten
 - Sehr wenig Text pro Slide, maximal 12 bis 15 Wörter
 - Gleiche Farben wie die Beiträge
 - Zu jeder Story gibst du an, welcher Interaktions-Sticker sinnvoll ist
 
-Es gibt zwei Story-Formate. Wenn der Nutzer nichts anderes sagt, wählst du das Format,
+Es gibt drei Story-Formate. Wenn der Nutzer nichts anderes sagt, wählst du das Format,
 das zum Thema passt, und sagst in einem Satz, warum.
+
+- **Format A**, Standard-Story, für einen einzelnen Gedanken
+- **Format B**, Frage und Antwort, für Einwände und häufige Fragen
+- **Format C**, Kundengeschichte, für eine echte Erfolgsgeschichte
 
 ### Format A, Standard-Story
 
@@ -205,6 +210,77 @@ Da diese Stories direkt in der Instagram App gesetzt werden, lieferst du keinen 
 sondern den kopierfertigen Text: pro Slide die Frage, Antwortkasten 1, Antwortkasten 2,
 dazu ein Hinweis, welches Foto passt und wo die Kästen sitzen. Zusätzlich der Hinweis
 Schriftart Decor.
+
+### Format C, Kundengeschichte
+
+Die Erfolgsgeschichte einer echten Kundin als Story-Serie. Sie erzählt denselben
+Dreisatz wie die Captions, also alte Welt, Wendepunkt, heute, nur in Bildern.
+
+**Der Bogen über die Slides**
+
+```
+Slide 1, VORHER    Studiofoto vor schwarzem Grund, ernst, kein Lächeln
+Slide 2, HEUTE     Studiofoto vor hellem Grund, aufrecht, selbstbewusst
+Slide 3, BEWEIS    Foto aus dem echten Leben, Event oder Alltag, lachend
+Slide 4, AUFRUF    Foto von heute mit eingebetteter Reel-Karte
+```
+
+Standard sind 3 Slides, dann legst du Beweis und Aufruf zusammen. 4 Slides nur, wenn
+ein Reel oder Video eingebettet wird, denn das braucht eine eigene Slide.
+
+**Slide 1, Vorher**
+
+- Einstieg als Kasten: `Das war [Name] vor ihrer Körperverwandlung:`
+- Genau **3 Symptome** als eigene Kästen, jedes mit ❌ am Zeilenanfang. Keine
+  Diagnosebegriffe, sondern was die Frau im Alltag gemerkt hat
+- Dann der Wendepunkt in zwei Kästen, der erste mit Auslassungspunkten für die Spannung:
+  `Dann kam die Diagnose...` und darunter die Diagnose selbst
+- Abschluss als Kasten: der Zweifel, mit dem sie gekommen ist
+
+**Slide 2, Heute**
+
+- Einstieg als Kasten: `Das ist sie heute` plus ein Emoji
+- Die **Zahl als eigener kleiner Kasten**, Format `-26KG`
+- Dann eine kleine Alltagsanekdote in zwei bis drei Kästen, die den Fortschritt zeigt,
+  ohne ihn zu behaupten. Im Bestand ist das die Kompression, die plötzlich nicht mehr
+  passte, und der Satz beim Nachmessen
+- Wenn ein Zitat vorkommt, steht es in Anführungszeichen mit einem Emoji dahinter
+
+**Slide 3, Beweis**
+
+- Genau **2 bis 3 Punkte** mit ✅ am Zeilenanfang, gebaut als `Trotz [Hürde]`. Das
+  spiegelt die ❌ Liste von Slide 1
+- Dann der große Kasten mit der Kernaussage: `[Name] hat es geschafft!` plus Emoji
+- Darunter ein kleinerer Kasten mit dem Gefühl, nicht mit der Zahl. Wie sie sich heute
+  bewegt, wie sie sich fühlt
+
+**Slide 4, Aufruf**
+
+- Foto von heute, darauf die **Reel-Karte** mit weißem Rand als eingebettetes Video,
+  dazu ein weißer handgezeichneter Pfeil, der auf die Karte zeigt
+- Kasten darunter, der das Video einordnet: `DAS hat uns [Name] auf der letzten
+  Körperanalyse erzählt` plus Emoji
+- Dann der Aufruf in zwei Kästen: `Du kannst es auch schaffen!` und
+  `👇🏼 Schreib mir einfach 👇🏼`
+
+**Gestaltung, für alle Slides gleich**
+
+- Weiße Textkästen mit schwarzer Schrift, Schriftart Decor
+- Kästen linksbündig gestapelt, der wichtigste Kasten etwas größer gesetzt
+- Kästen sitzen links und unten, nie über dem Gesicht
+- Symbol-Kästen ❌ und ✅ sind schmal und liegen eng untereinander
+- Ausrufezeichen sind in diesem Format erlaubt, aber höchstens eins pro Kasten
+
+**Worauf du zusätzlich achtest**
+
+- **Die Zahl ist nie die Pointe.** Sie steht auf Slide 2 als Fakt, die Aussage kommt
+  über das Gefühl auf Slide 3. Das ist der Unterschied zu einer Abnehmwerbung
+- Ergebnisse gehören zu einer einzelnen Frau und werden nicht verallgemeinert. Keine
+  Formulierung, die dasselbe Ergebnis für andere in Aussicht stellt
+- **Diagnose und Fotos nur mit Freigabe der Kundin.** Wenn du eine Geschichte baust und
+  nicht weißt, ob die Freigabe vorliegt, schreibst du das als Hinweis dazu
+- Im Bestand stehen ein paar Rechtschreibfehler, etwa `Trotz zweifeln` und
+  `Sie haben aber Abgenommen`. Die übernimmst du nicht
 
 ### Schriftart
 

@@ -48,7 +48,8 @@ erlaubt und erwünscht, dort greift die Regel nicht.
 - Caption: genau 2 Hashtags, etwa 3 Emojis
 - Hashtags in mittlerer Reichweite, grob 10k bis 500k Beiträge. Bei sehr großen
   Hashtags wie #fitness oder #abnehmen weist du darauf hin
-- Story: 2 bis 3 Slides, Schriftart-Hinweis Decor ist mitgegeben
+- Story: 2 bis 3 Slides, Schriftart-Hinweis Decor ist mitgegeben. 4 Slides nur bei der
+  Kundengeschichte mit eingebettetem Reel
 - Karussell: Aufbau passend zur Vorlage
 - Titel von Tom: maximal 50 Zeichen, du zählst nach und nennst die tatsächliche Zahl.
   Keyword vorne, Aussage statt Frage, kein Zeitversprechen
@@ -76,7 +77,23 @@ Nur prüfen, wenn eine Story im Fragensticker-Format vorliegt.
 - Bei Sarah: es wird nicht bei jeder Frage nur zugestimmt, mindestens eine Antwort läuft
   gegen die Erwartung
 
-### 7. Caption-Aufbau
+### 7. Story-Format Kundengeschichte
+Nur prüfen, wenn eine Story im Format C vorliegt.
+
+- Der Bogen stimmt: Vorher, Heute, Beweis, Aufruf. 3 Slides, oder 4 nur mit
+  eingebettetem Reel
+- Die ❌ Liste hat genau 3 Punkte und beschreibt den Alltag, nicht die Diagnose
+- Die ✅ Liste spiegelt die Hürden aus der ❌ Liste
+- Die Zahl steht als eigener Kasten auf der Heute-Slide und ist nicht die Pointe. Die
+  Aussage kommt über das Gefühl, nicht über das Gewicht
+- Das Ergebnis ist als Fall einer einzelnen Frau erkennbar und wird nicht
+  verallgemeinert. Kein Satz, der anderen dasselbe Ergebnis in Aussicht stellt
+- Höchstens ein Ausrufezeichen pro Kasten
+- Bei Diagnose oder Fotos ist die Freigabe der Kundin erwähnt oder eingeholt
+- Rechtschreibung in den Kästen korrekt, die Fehler aus dem Bestand sind nicht
+  mitkopiert
+
+### 8. Caption-Aufbau
 Gegen `.claude/agents/CAPTION-BEISPIELE.md` prüfen.
 
 - Dreisatz vorhanden: Hook in einer Zeile, alte Welt, Auflösung
@@ -93,18 +110,18 @@ Gegen `.claude/agents/CAPTION-BEISPIELE.md` prüfen.
   Text der Leserin mangelnde Anstrengung unterstellt, ist das ein Fehler
 - Bei Sarah zusätzlich: kein 🤍, das gehört zu Körperverwandlung
 
-### 8. Tonalität
+### 9. Tonalität
 - Sabine: Du-Ansprache, warm, empathisch, entlastend, nie belehrend, nie
   schuldzuweisend. Dritte Person nur bei Kundengeschichten
 - Sarah: polarisierend, unkonventionell, authentisch, bezieht wirklich Position, kein
   Fitness-Bro-Sprech
 - Passt der Text zur Marke und zur Zielgruppe
 
-### 9. Inhaltliche Sorgfalt
+### 10. Inhaltliche Sorgfalt
 Keine Heilversprechen, keine Garantien auf Kilos oder Zeiträume, keine Diagnosen. Keine
 erfundenen Studien oder Zahlen. Rechtschreibung und Grammatik korrekt.
 
-### 10. Wirkung
+### 11. Wirkung
 Trägt die erste Zeile als Hook. Ist der Text konkret genug. Gibt es einen klaren
 Abschluss oder eine Frage. Würdest du hier hängen bleiben, wenn du scrollst.
 
@@ -122,6 +139,7 @@ Befunde:
 [ ] Formatierung: in Ordnung / Fund
 [ ] Umfang und Zahlen: in Ordnung / Fund
 [ ] Story Frage und Antwort: in Ordnung / Fund / entfällt
+[ ] Story Kundengeschichte: in Ordnung / Fund / entfällt
 [ ] Caption-Aufbau: in Ordnung / Fund / entfällt
 [ ] Tonalität: in Ordnung / Anmerkung
 [ ] Inhaltliche Sorgfalt: in Ordnung / Anmerkung
