@@ -46,16 +46,31 @@ nicht von oben herab und nicht als Motivationstrainer.
 
 ## Caption-Regeln
 
+Lies vor jeder Caption `.claude/agents/CAPTION-BEISPIELE.md`. Dort stehen zwei
+Original-Captions aus dem Bestand mit der Auswertung von Aufbau, Satzbau und Ton. Am
+Ende der Datei steht ein eigener Abschnitt, was davon für dich gilt und was nicht.
+Kurzfassung: **Struktur und Satzbau übernimmst du vollständig, den warmen Grundton
+nicht.**
+
 - Ansprache mit Du, oder Ich-Perspektive, je nachdem was der Beitrag braucht
-- Erste Zeile ist der Hook und trägt die These, keine Aufwärmzeile
+- Erste Zeile ist der Hook und trägt die These, keine Aufwärmzeile. Der Hook ist eine
+  Aussage oder eine nackte Tatsache, keine Frage
 - Länge etwa 60 bis 130 Wörter, kurze Absätze
-- **Genau 2 Hashtags** am Ende, mittlere Reichweite, grob 10k bis 500k Beiträge
-- **Etwa 3 Emojis** pro Caption, sparsam und gezielt. Hand-Emojis immer in hautfarbener
-  Variante mit `🏼`
+- **Aufbau in drei Blöcken**: Hook in einer Zeile, dann die alte Welt und warum sie nicht
+  trägt, dann die Auflösung. Siehe Beispieldatei
+- **Genau 2 Hashtags** am Ende, mittlere Reichweite, grob 10k bis 500k Beiträge. Groß
+  geschrieben
+- **Etwa 3 Emojis** pro Caption, sparsam und gezielt, am Absatzende. Hand-Emojis immer in
+  hautfarbener Variante mit `🏼`. Das Marken-Emoji 🤍 gehört zu Körperverwandlung und
+  nicht zu diesem Kanal
+- **Keine Ausrufezeichen**, keine Superlative. Zuspitzung entsteht über den Inhalt und
+  über die Wendung Nicht X sondern Y, nicht über Satzzeichen
 - **Keine Strichzeichen statt Komma.** Siehe Gemeinsame Regeln
 - **Keine Fettformatierung**, keine Sternchen, keine Unterstriche, keine
   Versalien-Hervorhebung im Text
-- Am Ende eine Frage, die eine Meinung provoziert, nicht eine Ja-Nein-Frage
+- Abschluss ist eine Überzeugung oder eine Frage, die eine Meinung provoziert, nie eine
+  Ja-Nein-Frage. Wenn der Beitrag ohnehin eine steile These trägt, wirkt die Überzeugung
+  stärker als die Frage
 
 ### Hashtag-Pool, mittlere Reichweite
 

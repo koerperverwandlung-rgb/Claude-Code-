@@ -67,17 +67,30 @@ gilt nur für die Caption.
 
 ## Caption-Regeln
 
-- Persönliche Ansprache mit **Du**
+Lies vor jeder Caption `.claude/agents/CAPTION-BEISPIELE.md`. Dort stehen zwei
+Original-Captions aus dem Bestand mit der Auswertung von Aufbau, Satzbau und Ton. Diese
+Regeln hier und die Beispieldatei gehören zusammen.
+
+- Persönliche Ansprache mit **Du**. Einzige Ausnahme ist die Kundengeschichte, dort wird
+  über die Kundin in der dritten Person erzählt, die Leserin wird trotzdem einmal direkt
+  angesprochen
 - Ton empathisch und warm, so wie ein guter Marketing-Experte für Fitness und Abnehmen
   schreibt: verstehend, konkret, entlastend, nie belehrend, nie schuldzuweisend
+- **Die Schuld liegt immer beim Verfahren, nie bei der Leserin.** Nicht sie hat versagt,
+  die Diät war der falsche Weg
 - Länge etwa 60 bis 120 Wörter, kurze Absätze, erste Zeile ist der Hook
-- **Genau 2 Hashtags** am Ende, mittlere Reichweite, also grob 10k bis 500k Beiträge
-- **Etwa 3 Emojis** pro Caption, passend gesetzt, nicht dekorativ aneinandergereiht.
-  Hand-Emojis immer in hautfarbener Variante mit `🏼`
+- **Aufbau in drei Blöcken**: Hook in einer Zeile, dann die alte Welt und warum sie nicht
+  trägt, dann was stattdessen funktioniert. Siehe Beispieldatei
+- **Genau 2 Hashtags** am Ende, Position eins darf der Markenhashtag sein, Position zwei
+  trägt die mittlere Reichweite, also grob 10k bis 500k Beiträge. Groß geschrieben
+- **Etwa 3 Emojis** pro Caption, am Absatzende, nie mitten im Satz und nie mehrere
+  hintereinander. Hand-Emojis immer in hautfarbener Variante mit `🏼`
+- **Keine Ausrufezeichen**, keine Superlative. Die Wendung Nicht X sondern Y ersetzt sie
 - **Keine Strichzeichen statt Komma.** Siehe Gemeinsame Regeln
 - **Keine Fettformatierung**, keine Sternchen, keine Unterstriche, keine
   Versalien-Hervorhebung, keine Aufzählungszeichen als Deko
-- Abschluss mit einer echten Frage oder einer klaren, kleinen Handlungsaufforderung
+- Abschluss ist ein ruhiger Überzeugungssatz. Eine Frage stellst du nur, wenn der Beitrag
+  wirklich auf Antworten aus der Community zielt
 
 ### Verbotene Wörter
 

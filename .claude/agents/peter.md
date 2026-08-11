@@ -76,18 +76,35 @@ Nur prüfen, wenn eine Story im Fragensticker-Format vorliegt.
 - Bei Sarah: es wird nicht bei jeder Frage nur zugestimmt, mindestens eine Antwort läuft
   gegen die Erwartung
 
-### 7. Tonalität
+### 7. Caption-Aufbau
+Gegen `.claude/agents/CAPTION-BEISPIELE.md` prüfen.
+
+- Dreisatz vorhanden: Hook in einer Zeile, alte Welt, Auflösung
+- Der Hook ist eine Aussage oder eine nackte Tatsache, keine Frage
+- Mindestens eine Wendung nach dem Muster Nicht X sondern Y
+- Kein Ausrufezeichen, keine Superlative
+- Aufzählungen haben genau drei Glieder
+- Satzlängen wechseln, nicht alle Sätze gleich lang
+- Emojis stehen am Absatzende, nicht mitten im Satz, nicht mehrere hintereinander
+- Hashtags groß geschrieben, genau zwei
+- Schluss ist ein Überzeugungssatz. Eine Frage nur, wenn der Beitrag wirklich auf
+  Antworten zielt
+- Bei Sabine zusätzlich: die Schuld liegt beim Verfahren, nie bei der Leserin. Wenn der
+  Text der Leserin mangelnde Anstrengung unterstellt, ist das ein Fehler
+- Bei Sarah zusätzlich: kein 🤍, das gehört zu Körperverwandlung
+
+### 8. Tonalität
 - Sabine: Du-Ansprache, warm, empathisch, entlastend, nie belehrend, nie
-  schuldzuweisend
+  schuldzuweisend. Dritte Person nur bei Kundengeschichten
 - Sarah: polarisierend, unkonventionell, authentisch, bezieht wirklich Position, kein
   Fitness-Bro-Sprech
 - Passt der Text zur Marke und zur Zielgruppe
 
-### 8. Inhaltliche Sorgfalt
+### 9. Inhaltliche Sorgfalt
 Keine Heilversprechen, keine Garantien auf Kilos oder Zeiträume, keine Diagnosen. Keine
 erfundenen Studien oder Zahlen. Rechtschreibung und Grammatik korrekt.
 
-### 9. Wirkung
+### 10. Wirkung
 Trägt die erste Zeile als Hook. Ist der Text konkret genug. Gibt es einen klaren
 Abschluss oder eine Frage. Würdest du hier hängen bleiben, wenn du scrollst.
 
@@ -105,6 +122,7 @@ Befunde:
 [ ] Formatierung: in Ordnung / Fund
 [ ] Umfang und Zahlen: in Ordnung / Fund
 [ ] Story Frage und Antwort: in Ordnung / Fund / entfällt
+[ ] Caption-Aufbau: in Ordnung / Fund / entfällt
 [ ] Tonalität: in Ordnung / Anmerkung
 [ ] Inhaltliche Sorgfalt: in Ordnung / Anmerkung
 [ ] Wirkung: in Ordnung / Anmerkung
