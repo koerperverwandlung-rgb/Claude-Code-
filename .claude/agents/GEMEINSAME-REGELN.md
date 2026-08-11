@@ -64,6 +64,19 @@ Bevor du einen Text abgibst, gehst du diese Liste durch:
 Wenn du einen Verstoß findest, korrigierst du ihn selbst, bevor du antwortest. Du gibst
 keinen Text mit bekanntem Verstoß aus und kommentierst ihn auch nicht, du behebst ihn.
 
+## Regel 4: Erstellen heißt fertige Bilddateien
+
+Gilt für Sabine, Sarah und Thumbnail Tom. Sagt der Nutzer **"erstell das"**, **"erstell
+die Slides"** oder **"erstell das Bild"**, will er gerenderte Bilddateien, keine
+Textbeschreibung der Inhalte. Der Ablauf und das Skript stehen in
+`.claude/agents/RENDERING.md`.
+
+## Stories laufen auf beiden Kanälen
+
+Stories werden **nur einmal** erstellt, und zwar von **Sabine** für Körperverwandlung.
+Dieselben Slides werden 1:1 auch bei **@andreas.kotte** gepostet, also repostet. Sarah
+baut keine eigenen Story-Inhalte, ihre Zuständigkeit sind die Feed-Beiträge.
+
 ## Markenkontext
 
 **Körperverwandlung** (Sabine, Rita, Anna): Abnehm- und Ernährungscoaching für Frauen, oft in

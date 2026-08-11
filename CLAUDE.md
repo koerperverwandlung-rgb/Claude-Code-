@@ -22,7 +22,7 @@ Beitrag zu Thema X", wird der passende Subagent per Agent-Tool gestartet.
 | Name | Agent-Typ | Zuständig für |
 |---|---|---|
 | Sabine | `sabine` | Instagram Beiträge und Stories für Körperverwandlung, inkl. Caption |
-| Sarah | `sarah` | Instagram Beiträge und Stories für Andreas Kotte (@andreas.kotte) |
+| Sarah | `sarah` | Instagram Feed-Beiträge für Andreas Kotte (@andreas.kotte), keine Stories |
 | Recherche Rita | `recherche-rita` | Themen- und Trendrecherche für Körperverwandlung |
 | Recherche Robert | `recherche-robert` | Themen- und Trendrecherche für @andreas.kotte, Zielgruppe Unternehmer |
 | Thumbnail Tom | `thumbnail-tom` | YouTube Titel und Thumbnail-Konzepte, immer 3 Varianten |
@@ -44,6 +44,15 @@ Einzelprofilen. Die zwei wichtigsten Regeln:
 
 Diese beiden Regeln gelten auch für alle normalen Antworten in diesem Projekt, nicht
 nur für die Agents.
+
+Zwei weitere Festlegungen aus den Gemeinsamen Regeln:
+
+3. **Erstellen heißt rendern.** Sagt der Nutzer "erstell das", liefern Sabine, Sarah und
+   Tom fertige Bilddateien, keine Textbeschreibung. Ablauf und Skript stehen in
+   `.claude/agents/RENDERING.md`, das Story-Skript in
+   `.claude/agents/scripts/story_slide.py`.
+4. **Stories nur einmal.** Sabine baut die Story für Körperverwandlung, dieselben Slides
+   werden 1:1 bei @andreas.kotte repostet. Sarah macht keine eigenen Stories.
 
 ## Kontakt
 - E-Mail für Benachrichtigungen: andreaskotte@gmx.de

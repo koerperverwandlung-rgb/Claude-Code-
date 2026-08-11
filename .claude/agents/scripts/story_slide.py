@@ -1,0 +1,294 @@
+#!/usr/bin/env python3
+"""
+Story-Slides für Körperverwandlung rendern, 1080 x 1920.
+
+Baut aus einem Foto und ein paar Textzeilen eine fertige Instagram-Story-Slide:
+weiße Kästen, schwarze Schrift, zentriert, dazu optional der
+Fragensticker "Stell mir eine Frage".
+
+Benutzung als Modul:
+
+    from story_slide import render_slide
+
+    render_slide(
+        photo="foto1.jpg",
+        out="slide_01.png",
+        sticker="ich bin 54... ist es dafür nicht zu spät?",
+        boxes=["Nie zu spät", "Dein Körper reagiert in jedem Alter. 💫"],
+        top=0.10,            # wo der Block anfängt, 0.0 oben bis 1.0 unten
+        align="center",      # center, left, right
+    )
+
+Benutzung von der Kommandozeile:
+
+    python3 story_slide.py --photo foto1.jpg --out slide_01.png \
+        --sticker "ich bin 54... ist es dafür nicht zu spät?" \
+        --box "Nie zu spät" --box "Dein Körper reagiert in jedem Alter. 💫"
+
+Schriftart: Decor ist Projektvorgabe. Liegt die Datei nicht vor, wird die
+nächstliegende geometrische Rundschrift genommen und eine Warnung ausgegeben.
+Lege Decor.ttf oder Decor.otf in .claude/agents/fonts/ ab, dann wird sie
+automatisch benutzt.
+"""
+
+import argparse
+import os
+import re
+import sys
+
+from PIL import Image, ImageDraw, ImageFont
+
+W, H = 1080, 1920
+
+FONT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "fonts")
+
+# Reihenfolge der Schriftsuche. Decor zuerst, dann geometrische Rundschriften.
+FONT_CANDIDATES = [
+    (os.path.join(FONT_DIR, "Decor.ttf"), "Decor"),
+    (os.path.join(FONT_DIR, "Decor.otf"), "Decor"),
+    (os.path.join(FONT_DIR, "Decor-Regular.ttf"), "Decor"),
+    ("/usr/share/fonts/opentype/urw-base35/URWGothic-Book.otf", "URW Gothic"),
+    ("/usr/share/fonts/truetype/open-sans/OpenSans-Regular.ttf", "Open Sans"),
+    ("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", "DejaVu Sans"),
+]
+
+BOLD_CANDIDATES = [
+    (os.path.join(FONT_DIR, "Decor-Bold.ttf"), "Decor Bold"),
+    (os.path.join(FONT_DIR, "Decor-Bold.otf"), "Decor Bold"),
+    ("/usr/share/fonts/opentype/urw-base35/URWGothic-Demi.otf", "URW Gothic Demi"),
+    ("/usr/share/fonts/truetype/open-sans/OpenSans-Bold.ttf", "Open Sans Bold"),
+    ("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", "DejaVu Sans Bold"),
+]
+
+EMOJI_FONT = "/usr/share/fonts/truetype/noto/NotoColorEmoji.ttf"
+EMOJI_NATIVE = 109  # NotoColorEmoji liefert Bitmaps in dieser Groesse
+
+# Emoji inklusive Hautton-Modifier und Zero-Width-Joiner-Ketten
+EMOJI_RE = re.compile(
+    "([\U0001F000-\U0001FAFF☀-➿⬀-⯿️‍"
+    "\U0001F3FB-\U0001F3FF]+)"
+)
+
+
+def _pick(candidates, label):
+    for path, name in candidates:
+        if os.path.exists(path):
+            if name not in ("Decor", "Decor Bold"):
+                print(
+                    f"  Hinweis: Schriftart Decor nicht gefunden, {label} wird mit "
+                    f"'{name}' gesetzt. Lege Decor in .claude/agents/fonts/ ab.",
+                    file=sys.stderr,
+                )
+            return path, name
+    raise RuntimeError("Keine brauchbare Schriftdatei gefunden.")
+
+
+_REG_PATH, REG_NAME = _pick(FONT_CANDIDATES, "Fliesstext")
+_BOLD_PATH, BOLD_NAME = _pick(BOLD_CANDIDATES, "Fettschrift")
+
+
+def font(size, bold=False):
+    return ImageFont.truetype(_BOLD_PATH if bold else _REG_PATH, size)
+
+
+def _emoji_img(char, size):
+    """Ein Farb-Emoji als RGBA-Bild in der gewuenschten Hoehe."""
+    if not os.path.exists(EMOJI_FONT):
+        return None
+    try:
+        f = ImageFont.truetype(EMOJI_FONT, EMOJI_NATIVE)
+        tmp = Image.new("RGBA", (EMOJI_NATIVE + 40, EMOJI_NATIVE + 40), (0, 0, 0, 0))
+        ImageDraw.Draw(tmp).text((20, 20), char, font=f, embedded_color=True)
+        bbox = tmp.getbbox()
+        if not bbox:
+            return None
+        tmp = tmp.crop(bbox)
+        scale = size / tmp.height
+        return tmp.resize(
+            (max(1, int(tmp.width * scale)), max(1, int(tmp.height * scale))),
+            Image.LANCZOS,
+        )
+    except Exception:
+        return None
+
+
+def _split(text):
+    """Text in Stuecke aus Klartext und Emoji zerlegen."""
+    return [(p, bool(EMOJI_RE.fullmatch(p))) for p in EMOJI_RE.split(text) if p]
+
+
+def _measure(draw, text, f):
+    """Breite und Hoehe einer Zeile, Emojis mitgerechnet."""
+    width = 0
+    em = f.size
+    for part, is_emoji in _split(text):
+        if is_emoji:
+            img = _emoji_img(part, em)
+            width += (img.width + int(em * 0.10)) if img else 0
+        else:
+            width += draw.textlength(part, font=f)
+    asc, desc = f.getmetrics()
+    return width, asc + desc
+
+
+def _draw_line(base, draw, xy, text, f, fill):
+    """Eine Zeile zeichnen, Emojis als Bild eingesetzt."""
+    x, y = xy
+    asc, _ = f.getmetrics()
+    em = f.size
+    for part, is_emoji in _split(text):
+        if is_emoji:
+            img = _emoji_img(part, em)
+            if img:
+                base.paste(img, (int(x), int(y + asc - img.height * 0.88)), img)
+                x += img.width + int(em * 0.10)
+        else:
+            draw.text((x, y), part, font=f, fill=fill)
+            x += draw.textlength(part, font=f)
+
+
+def _wrap(draw, text, f, max_w):
+    words, lines, cur = text.split(), [], ""
+    for w in words:
+        trial = f"{cur} {w}".strip()
+        if _measure(draw, trial, f)[0] <= max_w or not cur:
+            cur = trial
+        else:
+            lines.append(cur)
+            cur = w
+    if cur:
+        lines.append(cur)
+    return lines
+
+
+def _cover(photo_path):
+    """Foto auf 1080 x 1920 bringen, mittig beschnitten, ohne Verzerrung."""
+    img = Image.open(photo_path).convert("RGB")
+    scale = max(W / img.width, H / img.height)
+    img = img.resize((int(img.width * scale) + 1, int(img.height * scale) + 1), Image.LANCZOS)
+    left = (img.width - W) // 2
+    top = (img.height - H) // 2
+    return img.crop((left, top, left + W, top + H))
+
+
+def _text_block(base, draw, text, f, box_w, pad_x, pad_y, radius, align):
+    """Weisser Kasten mit schwarzem, zentriertem Text. Gibt die Hoehe zurueck."""
+    lines = _wrap(draw, text, f, box_w - 2 * pad_x)
+    lh = int(f.size * 1.30)
+    inner_w = max(_measure(draw, l, f)[0] for l in lines)
+    w = int(inner_w + 2 * pad_x)
+    h = int(len(lines) * lh + 2 * pad_y - (lh - f.size) * 0.4)
+    return lines, w, h, lh
+
+
+def render_slide(
+    photo,
+    out,
+    boxes,
+    sticker=None,
+    sticker_title="Stell mir eine Frage",
+    top=0.10,
+    align="center",
+    box_size=58,
+    first_box_size=None,
+    gap=26,
+    max_width=0.86,
+):
+    """
+    photo            Pfad zum Hintergrundfoto
+    out              Zielpfad der PNG-Datei
+    boxes            Liste der Antwortkaesten, je ein String
+    sticker          Text im Fragensticker, None wenn kein Sticker
+    top              Startpunkt des Blocks als Anteil der Bildhoehe
+    box_size         Schriftgroesse der Antwortkaesten
+    first_box_size   Abweichende Groesse fuer Kasten 1, sonst wie box_size
+    """
+    base = _cover(photo)
+    draw = ImageDraw.Draw(base)
+
+    avail = int(W * max_width)
+    margin = (W - avail) // 2
+    y = int(H * top)
+
+    if sticker:
+        f_title = font(34, bold=True)
+        f_q = font(44, bold=True)
+        pad_x, pad_y, radius = 40, 30, 30
+
+        q_lines = _wrap(draw, sticker, f_q, avail - 2 * pad_x)
+        q_lh = int(f_q.size * 1.32)
+        title_h = int(f_title.size * 1.05) + 2 * 26
+        q_h = int(len(q_lines) * q_lh + 2 * pad_y)
+
+        # dunkler Kopfbalken
+        draw.rounded_rectangle(
+            [margin, y, margin + avail, y + title_h + radius],
+            radius=radius, fill=(38, 38, 38, 255),
+        )
+        tw = _measure(draw, sticker_title, f_title)[0]
+        _draw_line(base, draw, ((W - tw) / 2, y + 26), sticker_title, f_title, (255, 255, 255))
+
+        # weißes Frageflaeche
+        qy = y + title_h
+        draw.rounded_rectangle(
+            [margin, qy, margin + avail, qy + q_h], radius=radius, fill=(255, 255, 255)
+        )
+        ly = qy + pad_y
+        for line in q_lines:
+            lw = _measure(draw, line, f_q)[0]
+            _draw_line(base, draw, ((W - lw) / 2, ly), line, f_q, (0, 0, 0))
+            ly += q_lh
+        y = qy + q_h + int(gap * 1.6)
+
+    for i, text in enumerate(boxes):
+        size = first_box_size if (i == 0 and first_box_size) else box_size
+        f = font(size)
+        pad_x, pad_y, radius = 34, 26, 12
+
+        lines, bw, bh, lh = _text_block(base, draw, text, f, avail, pad_x, pad_y, radius, align)
+
+        if align == "left":
+            bx = margin
+        elif align == "right":
+            bx = W - margin - bw
+        else:
+            bx = (W - bw) // 2
+
+        draw.rounded_rectangle([bx, y, bx + bw, y + bh], radius=radius, fill=(255, 255, 255))
+        ly = y + pad_y
+        for line in lines:
+            lw = _measure(draw, line, f)[0]
+            _draw_line(base, draw, (bx + (bw - lw) / 2, ly), line, f, (0, 0, 0))
+            ly += lh
+        y += bh + gap
+
+    if y > H:
+        print(
+            f"  Warnung: Der Textblock in {os.path.basename(out)} laeuft unten aus dem "
+            f"Bild ({y} von {H} px). Kuerze den Text oder setze top kleiner.",
+            file=sys.stderr,
+        )
+
+    base.save(out, "PNG")
+    return out
+
+
+def main():
+    p = argparse.ArgumentParser(description="Story-Slide rendern, 1080x1920")
+    p.add_argument("--photo", required=True)
+    p.add_argument("--out", required=True)
+    p.add_argument("--sticker", default=None)
+    p.add_argument("--box", action="append", default=[])
+    p.add_argument("--top", type=float, default=0.10)
+    p.add_argument("--align", default="center", choices=["center", "left", "right"])
+    p.add_argument("--box-size", type=int, default=58)
+    a = p.parse_args()
+    render_slide(
+        photo=a.photo, out=a.out, boxes=a.box, sticker=a.sticker,
+        top=a.top, align=a.align, box_size=a.box_size,
+    )
+    print(a.out)
+
+
+if __name__ == "__main__":
+    main()
