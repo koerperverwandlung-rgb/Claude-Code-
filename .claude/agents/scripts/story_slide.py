@@ -285,7 +285,10 @@ def render_slide(
             sx = margin + avail - sw
         else:
             sx = (W - sw) // 2
-        sx = max(margin, min(sx, W - margin - sw))
+        # Der Sticker hat seine eigene Breite und darf breiter sein als die
+        # Textspalte. Begrenzt wird er am Bildrand, nicht an der Spalte.
+        rand = 40
+        sx = max(rand, min(sx, W - rand - sw))
         y += _draw_sticker(base, draw, sx, y, sw, sticker_title, sticker) + GAP_STICKER
 
     for i, text in enumerate(boxes):

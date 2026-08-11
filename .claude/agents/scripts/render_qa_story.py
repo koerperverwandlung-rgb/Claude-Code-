@@ -32,7 +32,7 @@ SLIDES = [
             "Dein Körper reagiert in jedem Alter auf gute Gewohnheiten. 💫",
         ],
         # Gesicht sitzt hier mittig, frei ist nur der schmale Streifen oben
-        "top": 0.015, "size": 40, "align": "center", "max_width": 0.88,
+        "top": 0.012, "size": 44, "align": "center", "max_width": 0.86,
     },
     {
         "foto": 3,
@@ -42,7 +42,7 @@ SLIDES = [
             "Dein Körper braucht jetzt andere Reize als mit 30.",
         ],
         # Gesicht links, Hand am Kinn, frei ist die rechte obere Haelfte
-        "top": 0.030, "size": 40, "align": "right", "max_width": 0.56,
+        "top": 0.020, "size": 42, "align": "right", "max_width": 0.60,
     },
     {
         "foto": 2,
@@ -52,7 +52,7 @@ SLIDES = [
             "Die Diäten waren der falsche Weg, nicht dein Körper.",
         ],
         # Gesicht links unten, Zeigefinger rechts mittig, frei ist rechts oben
-        "top": 0.030, "size": 40, "align": "right", "max_width": 0.56,
+        "top": 0.020, "size": 42, "align": "right", "max_width": 0.60,
     },
     {
         "foto": 4,
@@ -62,7 +62,7 @@ SLIDES = [
             "Wir passen dein Essen an den Urlaub an. 😀",
         ],
         # Gesicht links, Daumen hoch rechts, frei ist rechts oben
-        "top": 0.030, "size": 40, "align": "right", "max_width": 0.56,
+        "top": 0.020, "size": 42, "align": "right", "max_width": 0.60,
     },
 ]
 
