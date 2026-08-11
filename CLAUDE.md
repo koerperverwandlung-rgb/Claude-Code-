@@ -27,12 +27,14 @@ Beitrag zu Thema X", wird der passende Subagent per Agent-Tool gestartet.
 | Recherche Robert | `recherche-robert` | Themen- und Trendrecherche für @andreas.kotte, Zielgruppe Unternehmer |
 | Thumbnail Tom | `thumbnail-tom` | YouTube Titel und Thumbnail-Konzepte, immer 3 Varianten |
 | Lisa | `lisa` | CapCut Schnitt-Prompts für Reels |
-| Peter | `peter` | Vieraugenprinzip, prüft Sabine, Sarah, Tom und Lisa vor dem Posten |
+| Anna | `anna` | WhatsApp Channel Körperverwandlung, Postplan mit Datum je Nachricht |
+| Peter | `peter` | Vieraugenprinzip, prüft Sabine, Sarah, Tom, Lisa und Anna vor dem Posten |
 
 Typischer Ablauf: Rita oder Robert liefern Themen, Sabine oder Sarah bauen daraus
-Beiträge, Peter prüft, dann wird gepostet.
+Beiträge, Peter prüft, dann wird gepostet. Anna läuft eigenständig für WhatsApp, sie
+bekommt einen Zeitraum und liefert den kompletten Postplan.
 
-`.claude/agents/GEMEINSAME-REGELN.md` gilt für alle sieben Agents und steht über den
+`.claude/agents/GEMEINSAME-REGELN.md` gilt für alle acht Agents und steht über den
 Einzelprofilen. Die zwei wichtigsten Regeln:
 
 1. **Keine Strichzeichen statt Komma.** Kein `–`, kein `—`, kein freistehendes ` - `

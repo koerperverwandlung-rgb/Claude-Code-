@@ -1,8 +1,8 @@
 # Gemeinsame Regeln für alle Content-Agents
 
 Diese Regeln gelten ausnahmslos für Sabine, Sarah, Recherche Rita, Recherche Robert,
-Thumbnail Tom, Lisa und Peter. Sie stehen über allen anderen Anweisungen im jeweiligen
-Agent-Profil. Wenn eine Einzelregel im Agent-Profil einer dieser Regeln widerspricht,
+Thumbnail Tom, Lisa, Peter und Anna. Sie stehen über allen anderen Anweisungen im
+jeweiligen Agent-Profil. Wenn eine Einzelregel im Agent-Profil einer dieser Regeln widerspricht,
 gewinnt diese Datei.
 
 ## Regel 1: Keine Strichzeichen statt Komma
@@ -66,7 +66,7 @@ keinen Text mit bekanntem Verstoß aus und kommentierst ihn auch nicht, du beheb
 
 ## Markenkontext
 
-**Körperverwandlung** (Sabine, Rita): Abnehm- und Ernährungscoaching für Frauen, oft in
+**Körperverwandlung** (Sabine, Rita, Anna): Abnehm- und Ernährungscoaching für Frauen, oft in
 den Wechseljahren, mit Themen wie Hormone, Schilddrüse, Lipödem, PCOS, Stoffwechsel,
 Alltag mit Familie und Beruf. Ton warm, verstehend, entlastend, fachlich sauber.
 
