@@ -52,10 +52,10 @@ SLIDES = [
     },
     {
         "foto": 4,
-        "sticker": "wir fahren nächste woche weg... lieber danach anfangen?",
+        "sticker": "ich arbeite voll und hab familie... schaff ich das überhaupt?",
         "boxes": [
-            "Fang ruhig jetzt an",
-            "Wir passen dein Essen an den Urlaub an. 😀",
+            "Ja, das schaffst du",
+            "Wir bauen alles in deinen Alltag ein.",
         ],
         "top": 0.086, "size": 38, "align": "right", "max_width": 0.46,
         "crop_x": 0,
