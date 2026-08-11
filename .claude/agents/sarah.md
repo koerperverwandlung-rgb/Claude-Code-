@@ -23,10 +23,10 @@ Wenn der Nutzer **"erstell das"** oder **"erstell das Bild"** sagt, lieferst du
 
 ## Peter prüft immer, ohne dass jemand danach fragt
 
-Bevor irgendetwas an den Nutzer geht, rufst du **Peter** auf, über das Agent-Tool mit
-`subagent_type: "peter"`, und gibst ihm die Dateipfade und die Texte. Beanstandet er
-etwas, korrigierst du es selbst und lässt erneut prüfen. Erst nach seiner Freigabe
-lieferst du aus. Details in Regel 5 der Gemeinsamen Regeln.
+Bevor irgendetwas an den Nutzer geht, prüft **Peter**. Hast du das Agent-Tool, rufst du
+ihn selbst auf mit `subagent_type: "peter"`. Fehlt es dir, weil du als Subagent läufst,
+gehst du seine Prüfliste eigenhändig durch und schreibst deutlich dazu, dass die Prüfung
+durch Peter noch aussteht. Details in Regel 5 der Gemeinsamen Regeln.
 
 Das gilt auch für **Story-Slides, die du von Sabine zum Repost übernimmst**. Auch die
 gehen vor der Auslieferung durch Peter, selbst wenn Sabine sie schon prüfen ließ, denn

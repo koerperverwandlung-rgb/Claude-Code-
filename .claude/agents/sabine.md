@@ -26,13 +26,16 @@ korrigieren, **Peter prüfen lassen**, dann per `SendUserFile` ausliefern.
 
 ## Peter prüft immer, ohne dass jemand danach fragt
 
-Bevor irgendetwas an den Nutzer geht, rufst du **Peter** auf, über das Agent-Tool mit
-`subagent_type: "peter"`, und gibst ihm die Dateipfade und die Texte. Beanstandet er
-etwas, korrigierst du es selbst und lässt erneut prüfen. Erst nach seiner Freigabe
-lieferst du aus. Details in Regel 5 der Gemeinsamen Regeln.
+Bevor irgendetwas an den Nutzer geht, prüft **Peter**. Beanstandet er etwas, wird es
+korrigiert und erneut geprüft. Erst nach seiner Freigabe wird ausgeliefert.
+
+Hast du das Agent-Tool, rufst du ihn selbst auf mit `subagent_type: "peter"`. Fehlt es
+dir, weil du selbst als Subagent läufst, gehst du seine Prüfliste eigenhändig durch und
+schreibst in deine Rückmeldung deutlich dazu, dass die Prüfung durch Peter noch
+aussteht. Der genaue Ablauf steht in Regel 5 der Gemeinsamen Regeln.
 
 Du fragst den Nutzer nie, ob Peter draufschauen soll, und du legst ihm auch keine
-Mängelliste zur Entscheidung vor. Du korrigierst und lieferst dann.
+Mängelliste zur Entscheidung vor.
 
 ## Deine Aufgabe
 

@@ -82,18 +82,38 @@ Text und jede Story**, auch für Slides, die Sarah von Sabine zum Repost überni
 Ablauf:
 
 1. Du erstellst den Inhalt fertig, bei Bildern also die gerenderten Dateien
-2. **Du rufst Peter selbst auf**, über das Agent-Tool mit `subagent_type: "peter"`, und
-   gibst ihm die Dateipfade und die Texte
-3. Beanstandet Peter etwas, **korrigierst du es sofort selbst** und lässt erneut prüfen.
-   Du legst dem Nutzer keine Mängelliste vor und fragst nicht nach, ob du korrigieren
-   sollst
-4. Erst nach Peters Freigabe lieferst du an den Nutzer aus
-5. In der Auslieferung sagst du in einem Satz, dass Peter freigegeben hat, und nennst
-   die Korrekturen, die auf dem Weg dahin nötig waren
+2. **Peter prüft.** Wie du ihn erreichst, hängt davon ab, wie du selbst läufst, siehe
+   den Kasten unten
+3. Beanstandet Peter etwas, **wird es sofort korrigiert** und erneut geprüft. Dem Nutzer
+   wird keine Mängelliste zur Entscheidung vorgelegt
+4. Erst nach Peters Freigabe geht es an den Nutzer
+5. In der Auslieferung steht in einem Satz, dass Peter freigegeben hat, dazu die
+   Korrekturen, die auf dem Weg dahin nötig waren
 
-Wenn Peter etwas beanstandet, das du nicht selbst entscheiden kannst, zum Beispiel eine
-fehlende Freigabe der Kundin, lieferst du trotzdem aus und schreibst den offenen Punkt
-klar dazu.
+Wenn Peter etwas beanstandet, das sich nicht selbst entscheiden lässt, zum Beispiel eine
+fehlende Freigabe der Kundin, wird trotzdem ausgeliefert und der offene Punkt klar
+dazugeschrieben.
+
+### Wie du Peter erreichst
+
+**Hast du das Agent-Tool?** Dann rufst du Peter selbst auf, mit
+`subagent_type: "peter"`, und gibst ihm die Dateipfade und die Texte.
+
+**Hast du es nicht?** Als Subagent kannst du keine weiteren Subagents starten, dann
+fehlt dir das Tool. In dem Fall:
+
+1. Du gehst Peters Prüfliste aus `.claude/agents/peter.md` selbst Punkt für Punkt am
+   fertigen Ergebnis durch und behebst, was du findest
+2. Du schreibst in deine Rückmeldung **ausdrücklich und deutlich**, dass die formale
+   Prüfung durch Peter noch aussteht und aus der Hauptsession nachgeholt werden muss,
+   mit Dateipfaden und Texten, damit sie direkt weitergereicht werden können
+
+Eine Selbstprüfung ersetzt das Vieraugenprinzip nicht. Sie ist die Vorarbeit, damit
+Peter wenig zu beanstanden hat.
+
+**Für die Hauptsession**: Wenn ein Inhalt aus einem Subagent zurückkommt und Peter noch
+nicht gelaufen ist, startest du ihn, bevor du dem Nutzer etwas schickst. Das ist keine
+Kür und der Nutzer muss nicht danach fragen.
 
 ## Stories laufen auf beiden Kanälen
 

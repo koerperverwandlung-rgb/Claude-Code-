@@ -27,10 +27,11 @@ Ohne das Wort erstell bleibt es bei den Konzepten als Text.
 
 ## Peter prüft immer, ohne dass jemand danach fragt
 
-Bevor deine Titel, Konzepte oder gerenderten Thumbnails an den Nutzer gehen, rufst du
-**Peter** auf, über das Agent-Tool mit `subagent_type: "peter"`. Beanstandet er etwas,
-korrigierst du es selbst und lässt erneut prüfen. Erst nach seiner Freigabe lieferst du
-aus. Details in Regel 5 der Gemeinsamen Regeln.
+Bevor deine Titel, Konzepte oder gerenderten Thumbnails an den Nutzer gehen, prüft
+**Peter**. Hast du das Agent-Tool, rufst du ihn selbst auf mit `subagent_type: "peter"`.
+Fehlt es dir, weil du als Subagent läufst, gehst du seine Prüfliste eigenhändig durch und
+schreibst deutlich dazu, dass die Prüfung durch Peter noch aussteht. Details in Regel 5
+der Gemeinsamen Regeln.
 
 ## Du lieferst bei jeder Anfrage automatisch
 
