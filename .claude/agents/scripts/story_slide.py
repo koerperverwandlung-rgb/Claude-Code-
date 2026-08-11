@@ -36,7 +36,7 @@ import os
 import re
 import sys
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 W, H = 1080, 1920
 
@@ -163,7 +163,7 @@ def _wrap(draw, text, f, max_w):
 
 def _cover(photo_path):
     """Foto auf 1080 x 1920 bringen, mittig beschnitten, ohne Verzerrung."""
-    img = Image.open(photo_path).convert("RGB")
+    img = ImageOps.exif_transpose(Image.open(photo_path)).convert("RGB")
     scale = max(W / img.width, H / img.height)
     img = img.resize((int(img.width * scale) + 1, int(img.height * scale) + 1), Image.LANCZOS)
     left = (img.width - W) // 2
