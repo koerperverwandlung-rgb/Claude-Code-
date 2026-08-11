@@ -36,7 +36,7 @@ SLIDES = [
             "Dein Stoffwechsel braucht jetzt andere Reize als mit 30.",
         ],
         "top": 0.086, "size": 38, "align": "right", "max_width": 0.46,
-        "sticker_width": 0.60, "crop_x": 0,
+        "crop_x": 0,
     },
     {
         "foto": 2,
@@ -48,7 +48,7 @@ SLIDES = [
         # Ausschnitt maximal nach links, sonst schneidet der mittige Beschnitt
         # das Gesicht an
         "top": 0.086, "size": 38, "align": "right", "max_width": 0.46,
-        "sticker_width": 0.60, "crop_x": -180,
+        "crop_x": -180,
     },
     {
         "foto": 4,
@@ -58,7 +58,7 @@ SLIDES = [
             "Wir passen dein Essen an den Urlaub an. 😀",
         ],
         "top": 0.086, "size": 38, "align": "right", "max_width": 0.46,
-        "sticker_width": 0.60, "crop_x": 0,
+        "crop_x": 0,
     },
 ]
 
