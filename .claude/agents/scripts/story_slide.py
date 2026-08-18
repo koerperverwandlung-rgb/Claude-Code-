@@ -48,12 +48,17 @@ FONT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "fonts
 # (die "Nina"-Story) Buchstabe fuer Buchstabe verglichen und trifft die Formen
 # fast deckungsgleich: einstoeckiges a, dieselbe Rundung bei d, r, K, dieselbe
 # Laufweite. Comfortaa war zu rund und breit, URW Gothic zu geometrisch eckig.
-# Quicksand ist bis auf Weiteres der beste verfuegbare Ersatz fuer Decor.
+#
+# Beim direkten Pixelvergleich (Originalzeile exakt auf Breite skaliert) war
+# Quicksand Regular zu duenn, das Original ist deutlich kraeftiger im Strich.
+# Quicksand Medium trifft Strichstaerke und Zeilenbreite fast exakt und ist
+# deshalb die Standardschnitt, nicht Regular. Quicksand ist bis auf Weiteres
+# der beste verfuegbare Ersatz fuer Decor.
 FONT_CANDIDATES = [
     (os.path.join(FONT_DIR, "Decor.ttf"), "Decor"),
     (os.path.join(FONT_DIR, "Decor.otf"), "Decor"),
     (os.path.join(FONT_DIR, "Decor-Regular.ttf"), "Decor"),
-    ("/usr/share/fonts/truetype/quicksand/Quicksand-Regular.ttf", "Quicksand"),
+    ("/usr/share/fonts/truetype/quicksand/Quicksand-Medium.ttf", "Quicksand"),
     ("/usr/share/fonts/opentype/urw-base35/URWGothic-Book.otf", "URW Gothic"),
     ("/usr/share/fonts/truetype/open-sans/OpenSans-Regular.ttf", "Open Sans"),
     ("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", "DejaVu Sans"),

@@ -78,13 +78,19 @@ wichtige Bildteil dabei wegfällt, schneidest du das Foto vorher selbst passend 
 
 ## Schriftart
 
-Projektvorgabe für alle Story-Texte ist **Decor**. Die Schriftdatei liegt aktuell nicht
-im Projekt. Solange sie fehlt, setzt das Skript automatisch **Quicksand**.
+Projektvorgabe für alle Story-Texte ist **Decor**. Das ist eine der Schriften aus dem
+Instagram-eigenen Story-Texteditor, fest in die App einkompiliert. Instagram gibt diese
+Schriftdateien nicht heraus, Decor ist deshalb grundsätzlich nicht als Datei zu
+beschaffen, außer das Team hat sie selbst irgendwo lizenziert. Solange keine Datei im
+Projekt liegt, setzt das Skript automatisch **Quicksand Medium**.
 
 Quicksand wurde am 2026-08-18 direkt gegen ein Original-Referenzbild aus dem Bestand
 verglichen, Buchstabe für Buchstabe, und trifft die Formen fast deckungsgleich, näher
-als jede andere auf dem System verfügbare Schrift. Sie ist bis auf Weiteres der beste
-verfügbare Ersatz für Decor, kein Notbehelf mehr.
+als jede andere auf dem System verfügbare Schrift. Beim Feinabgleich stellte sich
+heraus, dass der Schnitt **Medium** und nicht Regular der richtige ist: Regular war im
+direkten Pixelvergleich zu dünn, Medium trifft Strichstärke und Zeilenbreite der
+Originalzeile fast exakt (bei gleicher Textbreite lagen beide innerhalb weniger Pixel).
+Das ist bis auf Weiteres der beste verfügbare Ersatz für Decor, kein Notbehelf mehr.
 
 Diese Warnung gibst du beim Ausliefern an den Nutzer weiter, einmal pro Auftrag, kurz.
 Sobald `Decor.ttf` oder `Decor.otf` in `.claude/agents/fonts/` liegt, wird sie ohne
