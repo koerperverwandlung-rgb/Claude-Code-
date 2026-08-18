@@ -116,8 +116,8 @@ Nur prüfen, wenn eine Story im Format C vorliegt.
 
 - Der Bogen stimmt: Vorher, Heute, Beweis, Aufruf. 3 Slides, oder 4 nur mit
   eingebettetem Reel
-- Die ❌ Liste hat genau 3 Punkte und beschreibt den Alltag, nicht die Diagnose
-- Die ✅ Liste spiegelt die Hürden aus der ❌ Liste
+- Die 👉🏼 Liste hat genau 3 Punkte und beschreibt den Alltag, nicht die Diagnose
+- Die ✅ Liste spiegelt die Hürden aus der 👉🏼 Liste
 - Die Zahl steht als eigener Kasten auf der Heute-Slide und ist nicht die Pointe. Die
   Aussage kommt über das Gefühl, nicht über das Gewicht
 - Das Ergebnis ist als Fall einer einzelnen Frau erkennbar und wird nicht

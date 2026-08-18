@@ -42,11 +42,18 @@ W, H = 1080, 1920
 
 FONT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "fonts")
 
-# Reihenfolge der Schriftsuche. Decor zuerst, dann geometrische Rundschriften.
+# Reihenfolge der Schriftsuche. Decor zuerst, dann der naechstliegende Ersatz.
+#
+# Quicksand wurde am 2026-08-18 gegen ein Original-Referenzbild aus dem Bestand
+# (die "Nina"-Story) Buchstabe fuer Buchstabe verglichen und trifft die Formen
+# fast deckungsgleich: einstoeckiges a, dieselbe Rundung bei d, r, K, dieselbe
+# Laufweite. Comfortaa war zu rund und breit, URW Gothic zu geometrisch eckig.
+# Quicksand ist bis auf Weiteres der beste verfuegbare Ersatz fuer Decor.
 FONT_CANDIDATES = [
     (os.path.join(FONT_DIR, "Decor.ttf"), "Decor"),
     (os.path.join(FONT_DIR, "Decor.otf"), "Decor"),
     (os.path.join(FONT_DIR, "Decor-Regular.ttf"), "Decor"),
+    ("/usr/share/fonts/truetype/quicksand/Quicksand-Regular.ttf", "Quicksand"),
     ("/usr/share/fonts/opentype/urw-base35/URWGothic-Book.otf", "URW Gothic"),
     ("/usr/share/fonts/truetype/open-sans/OpenSans-Regular.ttf", "Open Sans"),
     ("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", "DejaVu Sans"),
@@ -55,6 +62,7 @@ FONT_CANDIDATES = [
 BOLD_CANDIDATES = [
     (os.path.join(FONT_DIR, "Decor-Bold.ttf"), "Decor Bold"),
     (os.path.join(FONT_DIR, "Decor-Bold.otf"), "Decor Bold"),
+    ("/usr/share/fonts/truetype/quicksand/Quicksand-Bold.ttf", "Quicksand Bold"),
     ("/usr/share/fonts/opentype/urw-base35/URWGothic-Demi.otf", "URW Gothic Demi"),
     ("/usr/share/fonts/truetype/open-sans/OpenSans-Bold.ttf", "Open Sans Bold"),
     ("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", "DejaVu Sans Bold"),
@@ -174,17 +182,22 @@ def _draw_line(base, draw, xy, text, f, fill):
 
 
 def _wrap(draw, text, f, max_w):
-    words, lines, cur = text.split(), [], ""
-    for w in words:
-        trial = f"{cur} {w}".strip()
-        if _measure(draw, trial, f)[0] <= max_w or not cur:
-            cur = trial
-        else:
+    """Nach Breite umbrechen. Ein \\n im Text erzwingt zusaetzlich einen Umbruch,
+    fuer Faelle wie eine Zahl, die auf eigenen Zeilen stehen soll."""
+    result = []
+    for para in text.split("\n"):
+        words, lines, cur = para.split(), [], ""
+        for w in words:
+            trial = f"{cur} {w}".strip()
+            if _measure(draw, trial, f)[0] <= max_w or not cur:
+                cur = trial
+            else:
+                lines.append(cur)
+                cur = w
+        if cur:
             lines.append(cur)
-            cur = w
-    if cur:
-        lines.append(cur)
-    return lines
+        result.extend(lines or [""])
+    return result
 
 
 def _cover(photo_path, crop_x=0, crop_y=0):
@@ -329,6 +342,78 @@ def render_slide(
         print(
             f"  Warnung: Der Textblock in {os.path.basename(out)} laeuft unten aus dem "
             f"Bild ({y} von {H} px). Kuerze den Text oder setze top kleiner.",
+            file=sys.stderr,
+        )
+
+    base.save(out, "PNG")
+    return out
+
+
+def render_stacked_boxes(
+    photo,
+    out,
+    boxes,
+    top=0.60,
+    align="left",
+    max_width=0.86,
+    gap=16,
+    pad_x=28,
+    pad_y=18,
+    radius=14,
+    default_size=40,
+    crop_x=0,
+    crop_y=0,
+):
+    """
+    Kundengeschichte-Slide, Format C: mehrere gestapelte weisse Kaesten ohne
+    Fragensticker, Text linksbuendig im Kasten, wie im Referenzbeispiel aus dem
+    Bestand ("Das war [Name] vor ihrer Koerperverwandlung: ...").
+
+    boxes ist eine Liste von Eintraegen, jeder Eintrag entweder ein String
+    (Standardgroesse) oder ein (text, size)-Tupel fuer einen groesser gesetzten
+    Kasten, zum Beispiel den Einstiegssatz oder die Kernaussage.
+
+    photo, out          wie bei render_slide
+    top                 Startpunkt des ersten Kastens, Anteil der Bildhoehe
+    align               left, right oder center, gilt fuer die Position aller
+                         Kaesten, der Text im Kasten ist immer linksbuendig
+    max_width           maximale Kastenbreite als Anteil der Bildbreite
+    gap                 Abstand zwischen den Kaesten
+    radius              Eckenradius. Format C ist nicht der Instagram-Sticker,
+                         hier sind leicht gerundete Ecken korrekt
+    default_size        Schriftgroesse, wenn kein Tupel mit eigener Groesse
+                         angegeben ist
+    """
+    base = _cover(photo, crop_x, crop_y)
+    draw = ImageDraw.Draw(base)
+
+    avail = int(W * max_width)
+    margin = 40
+    y = int(H * top)
+
+    for item in boxes:
+        text, size = item if isinstance(item, tuple) else (item, default_size)
+        f = font(size)
+        lines, bw, bh, lh = _text_block(base, draw, text, f, avail, pad_x, pad_y)
+
+        if align == "left":
+            bx = margin
+        elif align == "right":
+            bx = W - margin - bw
+        else:
+            bx = (W - bw) // 2
+
+        draw.rounded_rectangle([bx, y, bx + bw, y + bh], radius=radius, fill=(255, 255, 255))
+        ly = y + pad_y
+        for line in lines:
+            _draw_line(base, draw, (bx + pad_x, ly), line, f, (0, 0, 0))
+            ly += lh
+        y += bh + gap
+
+    if y > H:
+        print(
+            f"  Warnung: Die Kaesten in {os.path.basename(out)} laufen unten aus dem "
+            f"Bild ({y} von {H} px). Kuerze Text oder setze top kleiner.",
             file=sys.stderr,
         )
 

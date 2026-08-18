@@ -79,12 +79,52 @@ wichtige Bildteil dabei wegfällt, schneidest du das Foto vorher selbst passend 
 ## Schriftart
 
 Projektvorgabe für alle Story-Texte ist **Decor**. Die Schriftdatei liegt aktuell nicht
-im Projekt. Solange sie fehlt, setzt das Skript automatisch **URW Gothic**, die
-nächstliegende geometrische Rundschrift, und gibt eine Warnung aus.
+im Projekt. Solange sie fehlt, setzt das Skript automatisch **Quicksand**.
+
+Quicksand wurde am 2026-08-18 direkt gegen ein Original-Referenzbild aus dem Bestand
+verglichen, Buchstabe für Buchstabe, und trifft die Formen fast deckungsgleich, näher
+als jede andere auf dem System verfügbare Schrift. Sie ist bis auf Weiteres der beste
+verfügbare Ersatz für Decor, kein Notbehelf mehr.
 
 Diese Warnung gibst du beim Ausliefern an den Nutzer weiter, einmal pro Auftrag, kurz.
 Sobald `Decor.ttf` oder `Decor.otf` in `.claude/agents/fonts/` liegt, wird sie ohne
-weitere Änderung benutzt.
+weitere Änderung benutzt und hat automatisch Vorrang vor Quicksand.
+
+## Format C, Kundengeschichte rendern
+
+Für die mehrteilige Kundengeschichte, siehe Format C in `sabine.md`, gibt es die
+Funktion `render_stacked_boxes` im selben Skript. Sie zeichnet mehrere gestapelte
+weiße Kästen ohne Fragensticker, Text im Kasten immer linksbündig, so wie im
+Referenzbeispiel aus dem Bestand.
+
+```python
+from story_slide import render_stacked_boxes
+
+render_stacked_boxes(
+    photo="pfad/zum/foto.jpg",
+    out="slide_01.png",
+    boxes=[
+        ("Das war Tanja vor ihrer Körperverwandlung:", 40),  # Tupel = eigene Größe
+        "👉🏼 Der Blick in den Spiegel, den sie am liebsten vermied",
+        "👉🏼 Kleidung, die sich jeden Tag enger anfühlte",
+        "Dann kam ihre erste Körperanalyse...",
+    ],
+    top=0.30,          # Startpunkt des ersten Kastens
+    align="left",      # left, right oder center, Position der ganzen Kastenspalte
+    default_size=34,   # Schriftgröße ohne eigene Angabe
+    gap=14,
+)
+```
+
+Ein Eintrag in `boxes` ist entweder ein String in Standardgröße, oder ein
+`(text, size)`-Tupel für einen größer gesetzten Kasten, etwa den Einstiegssatz oder
+die Kernaussage "Tanja hat es geschafft!". Ein `\n` im Text erzwingt einen Zeilenumbruch,
+nützlich für die Zahl, wenn sie auf eigenen Zeilen stehen soll, zum Beispiel
+`"-15,4 KG\n-16,5 CM BAUCHUMFANG\nin 4 Monaten"`.
+
+Vor dem Rendern ein Raster über das Foto legen und nachsehen, wo Gesicht und wichtige
+Gesten sitzen, siehe `_cover` und die Beispiele in den bisherigen Aufträgen. Kästen
+dürfen über Armen, Händen und Beinen liegen, nie über einem Gesicht.
 
 ## Emojis
 

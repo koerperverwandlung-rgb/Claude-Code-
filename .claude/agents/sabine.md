@@ -264,8 +264,9 @@ ein Reel oder Video eingebettet wird, denn das braucht eine eigene Slide.
 **Slide 1, Vorher**
 
 - Einstieg als Kasten: `Das war [Name] vor ihrer Körperverwandlung:`
-- Genau **3 Symptome** als eigene Kästen, jedes mit ❌ am Zeilenanfang. Keine
-  Diagnosebegriffe, sondern was die Frau im Alltag gemerkt hat
+- Genau **3 Symptome** als eigene Kästen, jedes mit 👉🏼 am Zeilenanfang. Keine
+  Diagnosebegriffe, sondern was die Frau im Alltag gemerkt hat. Aus einem
+  Original-Referenzbild bestätigt: 👉🏼 mit Hautton, nicht ❌
 - Dann der Wendepunkt in zwei Kästen, der erste mit Auslassungspunkten für die Spannung:
   `Dann kam die Diagnose...` und darunter die Diagnose selbst
 - Abschluss als Kasten: der Zweifel, mit dem sie gekommen ist
@@ -282,7 +283,7 @@ ein Reel oder Video eingebettet wird, denn das braucht eine eigene Slide.
 **Slide 3, Beweis**
 
 - Genau **2 bis 3 Punkte** mit ✅ am Zeilenanfang, gebaut als `Trotz [Hürde]`. Das
-  spiegelt die ❌ Liste von Slide 1
+  spiegelt die 👉🏼 Liste von Slide 1
 - Dann der große Kasten mit der Kernaussage: `[Name] hat es geschafft!` plus Emoji
 - Darunter ein kleinerer Kasten mit dem Gefühl, nicht mit der Zahl. Wie sie sich heute
   bewegt, wie sie sich fühlt
@@ -300,9 +301,11 @@ ein Reel oder Video eingebettet wird, denn das braucht eine eigene Slide.
 
 - Weiße Textkästen mit schwarzer Schrift, Schriftart Decor
 - Kästen linksbündig gestapelt, der wichtigste Kasten etwas größer gesetzt
-- Kästen sitzen links und unten, nie über dem Gesicht
-- Symbol-Kästen ❌ und ✅ sind schmal und liegen eng untereinander
+- Kästen sitzen links und unten, nie über dem Gesicht. Über Armen, Händen und Beinen
+  liegen dürfen sie, das ist in diesem Format normal
+- Symbol-Kästen 👉🏼 und ✅ sind schmal und liegen eng untereinander
 - Ausrufezeichen sind in diesem Format erlaubt, aber höchstens eins pro Kasten
+- Rendern mit `render_stacked_boxes` aus `scripts/story_slide.py`, siehe RENDERING.md
 
 **Worauf du zusätzlich achtest**
 
