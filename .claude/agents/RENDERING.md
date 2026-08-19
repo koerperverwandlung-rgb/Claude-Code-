@@ -137,13 +137,52 @@ dürfen über Armen, Händen und Beinen liegen, nie über einem Gesicht.
 Farb-Emojis werden aus NotoColorEmoji gerendert und als Bild in die Zeile gesetzt, auch
 mit Hautton. Du schreibst sie einfach in den Text, um den Rest kümmert sich das Skript.
 
-## Karussells und Thumbnails
+## Karussells
 
-Für Karussell-Beiträge, 1080 × 1350, und für Thumbnails, 1280 × 720, gibt es noch kein
-fertiges Skript. Du schreibst dir für den jeweiligen Auftrag ein eigenes mit Pillow,
-hältst dich dabei an die Gestaltungsvorgaben aus deinem Profil und lieferst ebenfalls
-fertige Dateien. Wenn dabei etwas entsteht, das mehrfach nützlich ist, legst du es unter
-`.claude/agents/scripts/` ab.
+`.claude/agents/scripts/render_karussell.py` baut Karussell-Beiträge, 1080 × 1350,
+nach der in `sabine.md` dokumentierten Hausvorlage. Zwei Funktionen:
+
+```python
+from render_karussell import render_photo_slide, render_content_slide
+
+# Cover- oder Schluss-Slide, Foto mit Verlauf, Badge, Headline, optional Bullets
+render_photo_slide(
+    photo="andreas.jpg",
+    out="slide_01.png",
+    badge="ERSTER SCHRITT",
+    headline=["DIE KÖRPERANALYSE", "VERÄNDERT ALLES"],  # Zeile 1 weiß, Zeile 2 rot
+    sub="Warum die Waage nie die ganze Wahrheit zeigt",   # nur Cover, Pfeil automatisch
+    face_anchor=0.30,   # 0 = Gesicht ganz oben im Ausschnitt, 1 = ganz unten
+)
+
+# Inhalts-Slide, Dunkelblau, Badge, Headline, genau 3 Bulletpoints, Abbinder
+render_content_slide(
+    out="slide_02.png",
+    number="02",
+    badge="KÖRPERWERTE",
+    headline=["WAS DEINE", "WAAGE VERSCHWEIGT"],
+    bullets=[("Muskelmasse", "sagt mehr über deinen Fortschritt als das Gewicht."), ...],
+    abbinder=["Eine Zahl reicht nicht.", "Deine Werte schon."],
+)
+```
+
+Wenn eine Geste im Foto in den Textbereich hineinragt, wie ein erhobener Finger oder
+eine ausgestreckte Hand, prüfst du das per Raster wie bei den Stories und begrenzt bei
+Bedarf `headline_max_w` in `render_photo_slide`, damit die Headline automatisch
+schrumpft statt die Geste zu überdecken. `crop_x` und `zoom` verschieben den
+Bildausschnitt, haben bei bildfüllenden Selfie-Fotos aber oft kaum Spielraum, das
+zuerst mit einem Raster prüfen statt blind zu verschieben.
+
+Das Logo unten links ist ein Platzhalter, ein K im Kreis, kein echtes Markenasset. Das
+sagst du dem Nutzer bei jeder Auslieferung kurz dazu, bis ein echtes Logo-Bild im
+Projekt liegt.
+
+## Thumbnails
+
+Für Thumbnails, 1280 × 720, gibt es noch kein fertiges Skript. Du schreibst dir für den
+jeweiligen Auftrag eines mit Pillow, hältst dich an die Gestaltungsvorgaben aus deinem
+Profil und lieferst fertige Dateien. Wenn dabei etwas entsteht, das mehrfach nützlich
+ist, legst du es unter `.claude/agents/scripts/` ab.
 
 ## Dateinamen
 

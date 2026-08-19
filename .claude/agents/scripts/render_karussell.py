@@ -341,6 +341,7 @@ def render_photo_slide(
     zoom=1.0,
     crop_x=0,
     content_top=None,
+    headline_max_w=None,
 ):
     """
     Cover- oder Schluss-Slide auf Fotobasis, 1080 x 1350.
@@ -360,6 +361,10 @@ def render_photo_slide(
                   reine Cover-Slides, 0.665 wenn Bullets vorliegen (die
                   Schluss-Slide braucht mehr Platz und muss unterhalb des
                   Kinns beginnen, sonst liegt Text im Gesicht)
+    headline_max_w  Eigene Breitenbegrenzung fuer die Headline, wenn eine
+                  Geste im Foto weiter in den Textbereich hineinragt und die
+                  volle Breite mit ihr kollidieren wuerde. Die Headline
+                  schrumpft automatisch, bis sie darunter passt.
     """
     base = _cover(photo, focus=face_anchor, zoom=zoom, crop_x=crop_x).convert("RGBA")
     base.alpha_composite(_gradient_overlay(height_frac=gradient_height, max_alpha=gradient_alpha))
@@ -376,7 +381,8 @@ def render_photo_slide(
     y += bh + (10 if bullets else 26)
 
     hsize = 50 if bullets else 84
-    y = _headline(base, draw, MARGIN, y, headline, size=hsize, max_w=W - 2 * MARGIN)
+    hmw = headline_max_w if headline_max_w else W - 2 * MARGIN
+    y = _headline(base, draw, MARGIN, y, headline, size=hsize, max_w=hmw)
     y += 2 if bullets else 6
 
     if sub:
