@@ -5,8 +5,12 @@ from render_karussell import render_photo_slide, render_content_slide
 BASE = "/tmp/claude-0/-home-user-Claude-Code-/7fc6a235-3a1c-5ad1-bf15-b37cbdff4250/scratchpad"
 OUT = f"{BASE}/karussell_andreas"
 
-PHOTO_COVER = f"{BASE}/fotos_neu/foto_1.jpg"
-PHOTO_CLOSE = f"{BASE}/fotos_neu/foto_2.jpg"
+# Nutzer wollte statt der Selfies zwei echte Veranstaltungsfotos: Cover mit den
+# beiden Teilnehmerinnen (Beate und Carolin), Schluss mit Andreas verschwommen
+# im Hintergrund. Beide Querformat/Hochformat-Fotos aus einer Interview-Session,
+# ganz anders zugeschnitten als die bisherigen Selfies.
+PHOTO_COVER = f"{BASE}/karussell_fotos_neu/a/Andreas_Beate Siegert_Carolin Steffens_Interview_quer .jpg"
+PHOTO_CLOSE = f"{BASE}/karussell_fotos_neu/b/Andreas_Interview_Blass.jpg"
 
 # Slide 1, Cover
 render_photo_slide(
@@ -15,12 +19,11 @@ render_photo_slide(
     badge="ERSTER SCHRITT",
     headline=["DIE KÖRPERANALYSE", "VERÄNDERT ALLES"],
     sub="Warum die Waage nie die ganze Wahrheit zeigt",
-    face_anchor=0.30,
-    # Peter-Befund: die volle Headline-Breite kreuzt den erhobenen Zeigefinger.
-    # Der Ausschnitt hat kaum Spielraum (Foto laesst sich per crop_x praktisch
-    # nicht verschieben), deshalb schrumpft die Headline stattdessen unter die
-    # Fingerposition, die bei etwa x=700 beginnt.
-    headline_max_w=600,
+    face_anchor=0.35,
+    # Querformat-Foto, 6048x4032. Per Raster geprueft: crop_x=180 zeigt beide
+    # Teilnehmerinnen (Beate links, Carolin rechts) vollstaendig und mittig,
+    # Andreas bleibt wie gewuenscht nur als Hand/Knie am unteren linken Rand.
+    crop_x=180,
 )
 
 # Slide 2, Inhalt
@@ -85,7 +88,11 @@ render_photo_slide(
         ("Ohne Rätselraten", "klare Werte statt vagem Gefühl."),
         ("Mit Begleitung", "du weißt, was als nächstes kommt."),
     ],
-    cta="Schreib mir und sichere dir deine Körperanalyse",
+    cta="Schreib mir und sichere dir dein Erstgespräch",
+    # Hochformat-Foto, 4160x6240, Andreas verschwommen im Hintergrund neben der
+    # Kamera. Gesicht sitzt bei focus=0 bereits weit oben (um y300), Textblock
+    # startet erst deutlich darunter, keine Kollision. Gradient wie zuvor
+    # geprueft, Kontrast hier zusaetzlich durch die dunkle Kamera im Vordergrund.
     face_anchor=0.0,
     gradient_height=0.78,
     gradient_alpha=235,
