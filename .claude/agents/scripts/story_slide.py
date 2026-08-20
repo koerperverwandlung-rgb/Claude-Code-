@@ -96,6 +96,14 @@ GAP_BOX = 24              # Abstand zwischen zwei Antwortkästen
 EMOJI_FONT = "/usr/share/fonts/truetype/noto/NotoColorEmoji.ttf"
 EMOJI_NATIVE = 109  # NotoColorEmoji liefert Bitmaps in dieser Groesse
 
+# Entscheidung 2026-08-20: Nutzer bemaengelte, dass die Emojis nicht wie klassische
+# iPhone-Emojis aussehen. Apples Emoji-Grafiken sind proprietaer und auf keinem Server
+# legal beschaffbar (gleiche Lage wie bei Decor). Getestete Alternative fonts-emojione
+# (2016) ist flacher, kantiger und an mehreren Glyphen farblich unstimmig, also klar
+# schlechter, nicht nur anders. NotoColorEmoji 2.047 ist Googles aktuelles Redesign mit
+# weichen 3D-Verlaeufen und Glanzlicht, das kommt Apples Optik bereits am naechsten und
+# bleibt bis auf Weiteres gesetzt. Details siehe RENDERING.md, Abschnitt Emojis.
+
 # Emoji inklusive Hautton-Modifier und Zero-Width-Joiner-Ketten
 EMOJI_RE = re.compile(
     "([\U0001F000-\U0001FAFF☀-➿⬀-⯿️‍"

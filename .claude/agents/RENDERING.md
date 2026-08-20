@@ -137,6 +137,24 @@ dürfen über Armen, Händen und Beinen liegen, nie über einem Gesicht.
 Farb-Emojis werden aus NotoColorEmoji gerendert und als Bild in die Zeile gesetzt, auch
 mit Hautton. Du schreibst sie einfach in den Text, um den Rest kümmert sich das Skript.
 
+Der Nutzer hat am 2026-08-20 bemängelt, dass die Emojis nicht wie klassische
+iPhone-Emojis aussehen und nicht hochwertig wirken. Geprüft wurde das Gleiche wie bei
+Decor: Apples eigene Emoji-Grafiken sind proprietär und stehen auf keinem Server
+legal zur Verfügung, eine echte iPhone-Optik lässt sich also nicht direkt beschaffen.
+Als Alternative wurde `fonts-emojione` (Emoji One, Stand 2016) installiert und an
+denselben Emojis direkt gegen NotoColorEmoji verglichen: Emoji One ist flacher, hat
+kaum Schattierung und wirkt kantiger, an mehreren Stellen (Schokolade, Sterne)
+außerdem farblich unstimmig, insgesamt sichtbar altbacken und nicht hochwertiger.
+Symbola wurde verworfen, ohne es zu rendern, weil es kein Farb-Emoji-Font ist, sondern
+ein einfarbiger Symbolzeichensatz. Ein Blick in zwei bereits ausgelieferte, echte
+Slides (`😉` und `💪🏼`) in starker Vergrößerung zeigte zudem keinen technischen
+Fehler, sauberer Zuschnitt, korrekter Hautton, kein Pixelmatsch. Die installierte
+NotoColorEmoji-Version 2.047 ist Googles aktuelles Redesign mit weichen 3D-Verläufen
+und Glanzlichtern, das ist stilistisch bereits deutlich näher an Apple als jede alte
+Emoji-Generation und bleibt bis auf Weiteres der beste legal verfügbare Ersatz. Diese
+Entscheidung ist damit abgeschlossen, nicht bei jedem Auftrag neu zu prüfen, außer es
+taucht ein konkreter Renderfehler auf.
+
 ## Karussells
 
 `.claude/agents/scripts/render_karussell.py` baut Karussell-Beiträge, 1080 × 1350,
