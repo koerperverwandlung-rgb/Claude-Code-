@@ -131,6 +131,18 @@ Alltag mit Familie und Beruf. Ton warm, verstehend, entlastend, fachlich sauber.
 Unternehmer und Selbstständige. Ton polarisierend, unkonventionell, authentisch,
 ausdrücklich kein Fitness-Bro-Sprech.
 
+## Angebot und Geschäftsfakten, Körperverwandlung
+
+- **Buchbar ist das Erstgespräch, nicht "die Körperanalyse".** Die Körperanalyse ist das
+  Messinstrument, das mit bestehenden Teilnehmerinnen etwa alle zwei Monate gemacht
+  wird, damit sie sehen, wo sie stehen und was sich verändert hat. Ein Call-to-Action
+  lautet deshalb "Sichere dir dein Erstgespräch" oder ähnlich, nie "sichere dir deine
+  Körperanalyse"
+- **Keine Preisangaben, keine Pauschalpreise.** Das Angebot ist individuell
+  zugeschnitten, es gibt keinen festen Monats- oder Paketpreis, der genannt werden
+  kann. Keine Caption, kein Slide-Text und keine Frage-Antwort-Story thematisiert
+  Kosten oder einen Preis, auch nicht ausweichend ("kommt drauf an, schreib mir")
+
 ## Markenfarben und Design-Grundlagen
 
 - Dunkelblau Hintergrund: `#0F1D33`
