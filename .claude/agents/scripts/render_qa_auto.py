@@ -21,7 +21,7 @@ SLIDES = [
     {"foto": 3, "sticker": "geht das auch, wenn ich unsportlich bin?",
      "boxes": ["Ja, absolut", "der einstieg ist für jeden möglich, ganz ohne vorerfahrung."]},
     {"foto": 4, "sticker": "darf ich dann süßigkeiten essen?",
-     "boxes": ["Ja, klar 😉", "weil es auf die menge ankommt, nicht auf strenge verbote."]},
+     "boxes": ["Ja, klar", "weil es auf die menge ankommt, nicht auf strenge verbote."]},
 ]
 
 for i, s in enumerate(SLIDES, start=1):
