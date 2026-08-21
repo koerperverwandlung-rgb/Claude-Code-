@@ -12,6 +12,11 @@
   Deep-Link zu genau der Seite/dem Schritt mitgeben. Nicht nur beschreiben, wo der
   Nutzer hinklicken soll, sondern den Link zum Anklicken liefern.
 - Nutzer kommuniziert auf Deutsch.
+- **KI-generierte Modelle, natürlich aber günstig**: Wenn beim Erstellen von Content
+  KI-generierte Modelle/Personen zum Einsatz kommen (z. B. über Artlist oder Higgsfield),
+  sollen diese natürlich und schön aussehen, aber nicht unnötig viele Tokens oder Kosten
+  verursachen. Bei der Modellwahl also immer die günstigere/effizientere Option nehmen,
+  solange die optische Qualität stimmt, nicht automatisch das teuerste Modell.
 
 ## Content-Agents (Instagram, YouTube, Reels)
 
