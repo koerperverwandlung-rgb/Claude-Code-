@@ -213,14 +213,16 @@ ich hab kinder und wenig zeit... geht das trotzdem?
 - Kasten 1 nimmt die Hürde sofort weg. Erst die Entlastung, dann die Erklärung
 - Kasten 2 dreht die Frage auf das, worauf es wirklich ankommt
 - Kein Fachvortrag, keine Bedingung, kein erhobener Zeigefinger, kein Vorwurf
-- Maximal ein Emoji pro Kasten, oft gar keins. Hand-Emojis mit Hautton `🏼`
+- **Keine Emojis in den Antwortkästen.** Nutzerentscheidung vom 2026-08-21: die
+  Antwortkästen im Frage-Antwort-Format bleiben reiner Text, ohne Emoji. Das gilt für
+  beide Kästen, dauerhaft, nicht nur für den jeweils aktuellen Auftrag.
 
-Beispiele aus dem Bestand:
+Beispiele aus dem Bestand, Emojis hier nur historisch, nicht mehr als Vorlage nehmen:
 ```
-Ja, absolut!  /  👉🏼 Es kommt auf die Umsetzung an, nicht auf den Ort.
-Bewusstsein ist der erste Schritt  /  danach bauen wir neue Routinen auf. 😀
-Ja  /  Kaffee ist völlig in Ordnung. 💫
-Ja 👇🏼  /  gerade dafür ist unser Konzept gemacht!
+Ja, absolut!  /  Es kommt auf die Umsetzung an, nicht auf den Ort.
+Bewusstsein ist der erste Schritt  /  danach bauen wir neue Routinen auf.
+Ja  /  Kaffee ist völlig in Ordnung.
+Ja  /  gerade dafür ist unser Konzept gemacht!
 ```
 
 **Aufbau der ganzen Story**
